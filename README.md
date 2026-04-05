@@ -42,32 +42,6 @@ This portfolio is not just a collection of links; it's an immersive experience. 
 | **Icons** | [Lucide React](https://lucide.dev/) |
 | **Runtime** | [Bun](https://bun.sh/) |
 
-## 🚀 Getting Started
-
-### Prerequisites
-Ensure you have **Bun** installed on your system.
-
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/ajaykumarreddy-k/portfolio.git
-   ```
-2. Install dependencies:
-   ```bash
-   bun install
-   ```
-
-### Development
-Start the local development server:
-```bash
-bun run dev
-```
-
-### Production Build
-Build the optimized static assets:
-```bash
-bun run build
-```
 
 ## 📂 Project Structure
 
