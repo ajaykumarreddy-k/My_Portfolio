@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
  * Universal Layout for all subpages.
  * Maintains consistency with the Home page background and navigation.
  */
-const BACKGROUND_ASSET = "/桜Sakura Cherry Blossom Pixel.gif";
+const BACKGROUND_ASSET = "/sakura-bg.gif";
 
 interface LayoutProps {
   children: ReactNode;
