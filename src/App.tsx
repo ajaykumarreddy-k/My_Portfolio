@@ -6,7 +6,7 @@ import LorenzoInteractivePortrait from './components/LorenzoInteractivePortrait'
 /**
  * CONFIGURATION: Hero background asset
  */
-const BACKGROUND_ASSET = "public/sakura.gif";
+const BACKGROUND_ASSET = "/sakura.gif";
 
 /**
  * REUSABLE SECTION WRAPPER (LAYERED OVERLAP LAYOUT)
