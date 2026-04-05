@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import * as THREE from '../../zip/node_modules/three/build/three.module.js';
+import * as THREE from 'three';
 
-//@ts-ignore
-import meImg from '../../zip/public/me.png';
-//@ts-ignore
-import racerImg from '../../zip/public/racerme.png';
+const meImg = '/me.png';
+const racerImg = '/racerme.png';
+
 
 // Helper function to parse vec3 string format "1.0,1.0,1.0"
 function parseVec3(vec3String: string) {
