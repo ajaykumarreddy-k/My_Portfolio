@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, Linkedin, Mail, Copy, Check, X, FileText } from 'lucide-react';
+import { Github, Linkedin, Mail, Copy, Check, X, FileText, ArrowUpRight, Command } from 'lucide-react';
 import LorenzoInteractivePortrait from './components/LorenzoInteractivePortrait';
 import Preloader from './components/Preloader';
 import ScrollStack, { ScrollStackItem } from './components/ScrollStack';
@@ -15,7 +15,7 @@ const BACKGROUND_ASSET = "/sakura.gif";
  * Implements a wide layout (1400px) with overlapping rounded-top sections and inner depth.
  */
 const Section = ({ id, title, subtitle, children, className = "bg-[#F8F7F5]", isFirst = false }: any) => (
-  <section id={id} className={`relative z-10 w-full ${isFirst ? "mt-0" : "-mt-16"} rounded-t-[3rem] py-28 px-4 md:px-5 shadow-[0_-20px_40px_-20px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(0,0,0,0.04)] ${className}`}>
+  <section id={id} className={`relative z-10 w-full ${isFirst ? "mt-0" : "-mt-16"} rounded-t-[3rem] py-16 md:py-28 px-4 md:px-5 shadow-[0_-20px_40px_-20px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(0,0,0,0.04)] ${className}`}>
     <motion.div
       initial={{ opacity: 0, scale: 0.98 }}
       whileInView={{ opacity: 1, scale: 1 }}
@@ -23,12 +23,12 @@ const Section = ({ id, title, subtitle, children, className = "bg-[#F8F7F5]", is
       transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
       className="max-w-[1400px] mx-auto"
     >
-      <div className="max-w-[1400px] mx-auto px-4 mb-16">
-        <h2 className="text-[8vw] md:text-[6vw] leading-none font-semibold tracking-tight">
+      <div className="max-w-[1400px] mx-auto px-4 mb-10 md:mb-16">
+        <h2 className="text-[11vw] sm:text-[8vw] md:text-[6vw] leading-none font-semibold tracking-tight">
           {title}
         </h2>
         {subtitle && (
-          <p className="text-muted-foreground mt-4 text-xl font-medium max-w-4xl leading-relaxed opacity-70">
+          <p className="text-muted-foreground mt-3 md:mt-4 text-base md:text-xl font-medium max-w-4xl leading-relaxed opacity-70">
             {subtitle}
           </p>
         )}
@@ -42,7 +42,7 @@ const Section = ({ id, title, subtitle, children, className = "bg-[#F8F7F5]", is
  * INTERACTIVE FOLDER COMPONENT
  * Playful Google Labs style folder with slide-up papers and tilt-open cover.
  */
-const Folder = ({ color, items, size = 1.4, onClick }: { color: string, items: any[], size?: number, onClick?: () => void }) => {
+const Folder = ({ color, items, label, onClick }: { color: string, items: any[], label: string, onClick?: () => void }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
@@ -54,35 +54,38 @@ const Folder = ({ color, items, size = 1.4, onClick }: { color: string, items: a
     <div className="flex flex-col items-center gap-4">
       <motion.div
         className="relative cursor-pointer group"
-        style={{ width: '120px', height: '90px', perspective: '1000px' }}
+        style={{ width: '170px', height: '125px', perspective: '1000px' }}
         onClick={handleClick}
-        whileHover={{ y: -8, scale: 1.02 }}
-        initial={{ scale: size }}
+        whileHover={{ y: -10, scale: 1.04 }}
+        transition={{ type: 'spring', stiffness: 350, damping: 22 }}
       >
         {/* BACK PLATE with TAB */}
         <div
-          className="absolute inset-0 rounded-xl shadow-md border-b-4 border-black/10"
+          className="absolute inset-0 rounded-[1.5rem] shadow-[0_5px_20px_rgba(0,0,0,0.08)] border-b-[5px] border-black/20"
           style={{ backgroundColor: color }}
         >
-          <div className="absolute -top-2 left-4 w-10 h-4 rounded-t-lg shadow-sm" style={{ backgroundColor: color }} />
+          <div 
+            className="absolute -top-3.5 left-5 w-14 h-6 rounded-t-2xl shadow-[0_-3px_8px_rgba(0,0,0,0.02)]" 
+            style={{ backgroundColor: color }} 
+          />
         </div>
 
         {/* PAPERS (SLIDE UP) */}
         {items.map((item, i) => (
           <motion.div
             key={i}
-            className="absolute inset-x-2 bg-white rounded-lg shadow-sm p-3 border border-black/5 overflow-hidden"
+            className="absolute inset-x-3.5 top-2.5 bg-white rounded-2xl shadow-[0_3px_12px_rgba(0,0,0,0.05)] p-4 border border-black/5 overflow-hidden flex flex-col justify-start"
             initial={false}
             animate={{
-              y: isOpen ? -30 - (i * 20) : 0,
+              y: isOpen ? -44 - (i * 26) : 0,
               rotate: isOpen ? (i - 1) * 6 : 0,
-              scale: isOpen ? 1 : 0.9,
+              scale: isOpen ? 1 : 0.92,
               opacity: isOpen ? 1 : 0
             }}
-            transition={{ type: 'spring', stiffness: 350, damping: 25, delay: isOpen ? i * 0.05 : 0 }}
-            style={{ zIndex: 10 + i, height: '80px' }}
+            transition={{ type: 'spring', stiffness: 350, damping: 24, delay: isOpen ? i * 0.05 : 0 }}
+            style={{ zIndex: 10 + i, height: '110px' }}
           >
-            <div className="font-mono text-[10px] leading-tight text-black/80 font-bold">
+            <div className="font-sans text-[10px] leading-relaxed text-black/85 font-extrabold break-words" style={{ fontFamily: "Inter, sans-serif" }}>
               {item}
             </div>
           </motion.div>
@@ -90,14 +93,25 @@ const Folder = ({ color, items, size = 1.4, onClick }: { color: string, items: a
 
         {/* FRONT COVER (TILT) */}
         <motion.div
-          className="absolute inset-0 rounded-xl shadow-xl origin-bottom border-t-2 border-white/30 overflow-hidden"
+          className="absolute inset-0 rounded-[1.5rem] shadow-[0_10px_30px_rgba(0,0,0,0.12)] origin-bottom border-t-2 border-white/30 overflow-hidden flex flex-col justify-end p-4"
           style={{ backgroundColor: color, zIndex: 30 }}
-          animate={{ rotateX: isOpen ? -35 : 0 }}
-          transition={{ type: 'spring', stiffness: 250, damping: 30 }}
+          animate={{ rotateX: isOpen ? -40 : 0 }}
+          transition={{ type: 'spring', stiffness: 250, damping: 28 }}
         >
           {/* Subtle geometric accent on cover */}
           <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
             <div className="w-[150%] h-[150%] -rotate-45 translate-x-[-20%] translate-y-[-20%] border-t-2 border-white" />
+          </div>
+
+          {/* Tactile File Archive Label Badge */}
+          <div 
+            className="relative z-10 rounded-lg px-2 py-1.5 text-[9px] uppercase tracking-[0.25em] font-extrabold text-center select-none border border-black/5 bg-white/20 backdrop-blur-md shadow-sm"
+            style={{ 
+              color: color === '#E9FF61' || color === '#FFFFFF' ? '#000000' : '#FFFFFF',
+              fontFamily: "'Google Sans', sans-serif"
+            }}
+          >
+            {label}
           </div>
         </motion.div>
       </motion.div>
@@ -108,7 +122,6 @@ const Folder = ({ color, items, size = 1.4, onClick }: { color: string, items: a
 export default function App() {
   const isVideo = BACKGROUND_ASSET.toLowerCase().endsWith('.mp4');
 
-  // Preloader State
   const [isPreloaderActive, setIsPreloaderActive] = useState(true);
 
   // Toolkit Modal State
@@ -116,7 +129,6 @@ export default function App() {
 
   const [toolCommands, setToolCommands] = useState<string[]>([]);
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
-  const [showAllRepos, setShowAllRepos] = useState(false);
 
   const copyToClipboard = (text: string, index: number) => {
     navigator.clipboard.writeText(text);
@@ -133,23 +145,6 @@ export default function App() {
   ];
   const featuredProject = projects[0];
   const remainingProjects = projects.slice(1);
-
-  const repos = [
-    { name: "AI Face Transformation Suite (GAN)", lang: "Python", desc: "GAN-based system for emotion editing, face morphing, and high-fidelity sketch generation.", url: "https://github.com/ajaykumarreddy-k/PS-Style-GAN-Image-Generater-for-facial-entertainment-with-Features" },
-    { name: "Medyphas AI", lang: "TypeScript", desc: "AI-powered patient triage system for symptom analysis, prioritization, and doctor queue optimization.", url: "https://github.com/ajaykumarreddy-k/Medyphas-AI-Intelligent-Patient-Triage-System" },
-    { name: "AI UI Generation Pipeline (RAG)", lang: "Python", desc: "RAG-based pipeline for generating structured, pixel-consistent frontend layouts.", url: "https://github.com/ajaykumarreddy-k/Prompt-Machine-Ajayakr-prompter-" },
-    { name: "Tempo — Weather Intelligence Interface", lang: "TypeScript", desc: "Context-aware weather interface delivering actionable insights from real-time forecast data.", url: "https://github.com/ajaykumarreddy-k/TEMPO-WEATHER" },
-    { name: "Narrative Shield", lang: "Python", desc: "Real-time AI platform for detecting and explaining disinformation in text.", url: "https://github.com/ajaykumarreddy-k/-NARRATIVE-SHIELD" },
-    { name: "Sentinal-X", lang: "TypeScript", desc: "Autonomous supply chain intelligence platform with BYOK architecture.", url: "https://github.com/ajaykumarreddy-k/Sentinal---X" },
-    { name: "Swap Walls", lang: "Kotlin", desc: "Wallpaper application built using Kotlin with a focus on simple UI and media rendering.", url: "https://github.com/ajaykumarreddy-k/Swap-Walls" },
-    { name: "Famshare", lang: "Kotlin", desc: "Personal streaming application that serves media from local folders with API-driven playback.", url: "https://github.com/ajaykumarreddy-k/Famshare" },
-    { name: "BrainBuzzer", lang: "Python", desc: "Interactive quiz web application supporting multiple genres with a full-stack implementation.", url: "https://github.com/ajaykumarreddy-k/BrainBuzzer-A-quiz-app" },
-    { name: "Certificate Generator", lang: "Python", desc: "Automated certificate generation system with customizable templates and batch processing.", url: "https://github.com/ajaykumarreddy-k/Certificate_Generater" },
-  ];
-  const featuredRepo = repos[0];
-  const coreRepos = repos.slice(1, 6);
-  const additionalRepos = repos.slice(6);
-  const visibleRepos = showAllRepos ? [...coreRepos, ...additionalRepos] : coreRepos;
 
 
   return (
@@ -173,7 +168,7 @@ export default function App() {
       )}
 
       {/* 🚀 GIMAEV-INSPIRED EDITORIAL HOME PAGE & TITLE SCREEN */}
-      <section className="relative min-h-screen bg-[#FDFCF7] text-[#0a0a0a] font-mori flex flex-col justify-start px-6 py-6 md:px-16 md:py-8 overflow-hidden">
+      <section className="relative min-h-screen bg-[#FDFCF7] text-[#0a0a0a] font-mori flex flex-col justify-start px-5 py-5 md:px-16 md:py-8 overflow-hidden">
 
         {/* Subtle cinematic physical grain texture overlay */}
         <div className="absolute inset-0 bg-grain pointer-events-none z-10 opacity-[0.025]" />
@@ -187,7 +182,7 @@ export default function App() {
               className="text-2xl font-bold tracking-tight text-[#0a0a0a]"
               style={{ fontFamily: "'PP Mori', sans-serif" }}
             >
-              AKR. Folio 🗿
+              AKR. Folio ✌️🙂
             </h1>
             <p className="text-[10px] uppercase tracking-[0.25em] text-[#0a0a0a]/50 font-bold leading-relaxed">
               Selected Engineering &amp; AI Works, vol. 2 <br />
@@ -210,7 +205,7 @@ export default function App() {
           </div>
 
           {/* Right Column (The primary content - shifted upwards to fit beautifully in the upper viewport) */}
-          <div className="w-full md:w-[70%] max-w-4xl flex flex-col items-start gap-4 md:gap-6 md:-translate-y-[7vh] lg:-translate-y-[8vh]">
+          <div className="w-full md:w-[70%] max-w-4xl flex flex-col items-start gap-3 md:gap-6 md:-translate-y-[7vh] lg:-translate-y-[8vh]">
 
             {/* ABOUT ME label */}
             <div className="text-[10px] uppercase tracking-[0.3em] text-[#0a0a0a]/40 font-black">
@@ -219,24 +214,69 @@ export default function App() {
 
             {/* Huge, Elegant Editorial Biography */}
             <h2
-              className="text-2xl sm:text-3xl md:text-[2.5rem] font-normal leading-[1.25] text-[#0a0a0a] tracking-[-0.02em] max-w-4xl font-mori"
-              style={{ fontFamily: "'PP Mori', sans-serif" }}
+              className="text-sm sm:text-xl md:text-[2.5rem] font-normal leading-[1.5] sm:leading-[1.35] md:leading-[1.25] text-[#0a0a0a] tracking-[-0.01em] md:tracking-[-0.02em] max-w-4xl font-sans"
+              style={{ fontFamily: "'Google Sans', sans-serif" }}
             >
               Hello there! My name is <span className="font-bold">Ajay Kumar Reddy K.</span> <br />
               I’m a Creative Technologist and AI Engineer, currently building advanced machine learning suites and intelligent triage interfaces. Previously, I built Medyphas AI and led autonomous supply-chain models. <br />
               Beyond building AI pipelines, I enjoy tinkering with generative adversarial networks, exploring computer vision algorithms, and publishing open-source experiments.
             </h2>
 
-            {/* Rounded Portrait Image with optimized aspect ratio for perfect viewport visibility */}
-            <div className="w-full max-w-md rounded-[2rem] overflow-hidden border border-black/[0.04] aspect-[16/10] relative group shadow-sm bg-stone-100">
-              <img
-                src="/footerbackground.jpeg"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = "/me.png";
-                }}
-                alt="Ajay Kumar Reddy K."
-                className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-700"
-              />
+            {/* Portrait + Stickers Row */}
+            <div className="w-full flex flex-row items-end gap-5 md:gap-8">
+
+              {/* Rounded Portrait Image — bigger */}
+              <div className="flex-shrink-0 w-[60%] sm:w-[65%] md:w-auto md:max-w-[600px] rounded-[1.5rem] md:rounded-[2rem] overflow-hidden border border-black/[0.04] aspect-[4/5] md:aspect-[4/3] relative group shadow-md bg-stone-100">
+                <img
+                  src="/footerbackground.jpeg"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = "/me.png";
+                  }}
+                  alt="Ajay Kumar Reddy K."
+                  className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-700"
+                />
+              </div>
+
+              {/* Sticker Wall — bigger stickers */}
+              <div className="flex-1 flex flex-wrap items-end justify-start gap-4 md:gap-7 pb-3 md:pb-6">
+
+                {/* Linux Tux */}
+                <img
+                  src="/Stickers/Stickerview1-128-removebg-preview.png"
+                  alt="Linux sticker"
+                  className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 object-contain drop-shadow-lg hover:scale-110 hover:-rotate-3 transition-all duration-300 cursor-pointer select-none"
+                  style={{ transform: "rotate(-8deg)" }}
+                  draggable={false}
+                />
+
+                {/* Figma */}
+                <img
+                  src="/Stickers/figma-adesivo-sticker-removebg-preview.png"
+                  alt="Figma sticker"
+                  className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain drop-shadow-lg hover:scale-110 hover:rotate-3 transition-all duration-300 cursor-pointer select-none"
+                  style={{ transform: "rotate(6deg)" }}
+                  draggable={false}
+                />
+
+                {/* GitHub */}
+                <img
+                  src="/Stickers/st_small_507x507-pad_600x600_f8f8f8-removebg-preview.png"
+                  alt="GitHub sticker"
+                  className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 object-contain drop-shadow-lg hover:scale-110 hover:-rotate-2 transition-all duration-300 cursor-pointer select-none"
+                  style={{ transform: "rotate(-4deg)" }}
+                  draggable={false}
+                />
+
+                {/* Code tag </> */}
+                <img
+                  src="/Stickers/image.png"
+                  alt="Code sticker"
+                  className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain drop-shadow-lg hover:scale-110 hover:rotate-5 transition-all duration-300 cursor-pointer select-none"
+                  style={{ transform: "rotate(10deg)" }}
+                  draggable={false}
+                />
+
+              </div>
             </div>
 
           </div>
@@ -244,7 +284,7 @@ export default function App() {
         </div>
 
         {/* Bottom Navigation & Metadata Footer Row (Pushed to the absolute bottom dynamically) */}
-        <div className="w-full flex flex-col sm:flex-row items-end sm:items-center justify-between gap-6 z-20 mt-auto border-t border-black/[0.05] pt-6">
+        <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 md:gap-6 z-20 mt-auto border-t border-black/[0.05] pt-4 md:pt-6">
 
           {/* Bottom Left: Rounded Navigation Pills */}
           <div className="flex gap-2">
@@ -257,8 +297,8 @@ export default function App() {
                 key={i}
                 href={pill.href}
                 className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-[0.15em] border transition-all duration-300 ${pill.active
-                    ? 'bg-[#0a0a0a] text-white border-transparent'
-                    : 'bg-transparent text-[#0a0a0a]/60 border-black/10 hover:border-black hover:text-[#0a0a0a]'
+                  ? 'bg-[#0a0a0a] text-white border-transparent'
+                  : 'bg-transparent text-[#0a0a0a]/60 border-black/10 hover:border-black hover:text-[#0a0a0a]'
                   }`}
                 style={{ fontFamily: "'PP Mori', sans-serif" }}
               >
@@ -294,7 +334,7 @@ export default function App() {
         {/* DOMINANT FEATURED CARD */}
         {/* PREMIUM SCROLL STACK PORTFOLIO LAYOUT */}
         <div className="max-w-6xl mx-auto py-12 pb-20 px-4 md:px-0">
-          <ScrollStack 
+          <ScrollStack
             itemDistance={90}
             itemScale={0.025}
             itemStackDistance={35}
@@ -312,35 +352,38 @@ export default function App() {
                 'bg-gradient-to-br from-[#121620] to-[#0a0d14] border border-white/5 shadow-2xl',
                 'bg-gradient-to-br from-[#161a24] to-[#0e1118] border border-white/5 shadow-2xl'
               ];
-              
+
               return (
-                <ScrollStackItem 
+                <ScrollStackItem
                   key={i}
                   itemClassName="bg-gradient-to-br from-[#121318] to-[#090A0D] border border-white/[0.06] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.4)] text-white"
                 >
-                  <div className="w-full h-full flex flex-col md:flex-row items-stretch min-h-[440px]">
-                    
+                  <div className="w-full h-full flex flex-col md:flex-row items-stretch min-h-[360px] md:min-h-[440px]">
+
                     {/* LEFT PANEL: Rich Editorial Information */}
-                    <div className="flex-[0.8] flex flex-col justify-between p-8 md:p-12 min-h-[300px] md:min-h-0">
+                    <div className="flex-[0.8] flex flex-col justify-between p-5 md:p-12 min-h-[220px] md:min-h-0">
                       <div>
                         {/* Top Row: Index & Category */}
-                        <div className="flex justify-between items-center text-[10px] font-black tracking-[0.3em] text-white/40 uppercase mb-5">
+                        <div
+                          className="flex justify-between items-center text-[10px] font-bold tracking-[0.15em] text-white/45 uppercase mb-5"
+                          style={{ fontFamily: "'Google Sans', sans-serif" }}
+                        >
                           <span>0{i + 1} / {project.tags[0] || 'ENGINEERING'}</span>
-                          <span className="px-3 py-1 bg-white/10 rounded-full border border-white/5 text-[9px] tracking-widest font-bold text-white/60">ACTIVE PORT</span>
+                          <span className="px-3 py-1 bg-white/5 rounded-full border border-white/[0.04] text-[9px] tracking-widest font-bold text-white/50">ACTIVE PORT</span>
                         </div>
 
                         {/* Title */}
-                        <h3 
-                          className="text-2xl md:text-4xl font-normal tracking-tight text-white mb-4 leading-tight font-mori"
-                          style={{ fontFamily: "'PP Mori', sans-serif" }}
+                        <h3
+                          className="text-xl md:text-4xl font-bold tracking-tight text-white mb-3 md:mb-4 leading-tight"
+                          style={{ fontFamily: "'Google Sans', sans-serif" }}
                         >
                           {project.title}
                         </h3>
 
                         {/* Description */}
-                        <p 
-                          className="text-sm md:text-base text-white/70 leading-relaxed max-w-xl font-medium font-mori mb-6"
-                          style={{ fontFamily: "'PP Mori', sans-serif" }}
+                        <p
+                          className="text-sm md:text-base text-white/80 leading-relaxed max-w-xl font-normal mb-6"
+                          style={{ fontFamily: "'Google Sans', sans-serif" }}
                         >
                           {project.desc}
                         </p>
@@ -351,18 +394,18 @@ export default function App() {
                         <div className="flex flex-wrap gap-2">
                           {project.tags.length > 0 ? (
                             project.tags.map((tag) => (
-                              <span 
-                                key={tag} 
-                                className="px-3.5 py-1 bg-white/10 rounded-full text-[9px] uppercase tracking-[0.2em] font-bold text-white/60 border border-white/5"
-                                style={{ fontFamily: "'PP Mori', sans-serif" }}
+                              <span
+                                key={tag}
+                                className="px-3.5 py-1 bg-white/5 rounded-full text-[9px] uppercase tracking-[0.15em] font-bold text-white/50 border border-white/[0.04]"
+                                style={{ fontFamily: "'Google Sans', sans-serif" }}
                               >
                                 {tag}
                               </span>
                             ))
                           ) : (
-                            <span 
-                              className="px-3.5 py-1 bg-white/10 rounded-full text-[9px] uppercase tracking-[0.2em] font-bold text-white/60 border border-white/5"
-                              style={{ fontFamily: "'PP Mori', sans-serif" }}
+                            <span
+                              className="px-3.5 py-1 bg-white/5 rounded-full text-[9px] uppercase tracking-[0.15em] font-bold text-white/50 border border-white/[0.04]"
+                              style={{ fontFamily: "'Google Sans', sans-serif" }}
                             >
                               Engineering &amp; AI
                             </span>
@@ -373,20 +416,21 @@ export default function App() {
                           href={project.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center px-6 py-3 bg-white text-black font-black text-xs uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-md"
-                          style={{ fontFamily: "'PP Mori', sans-serif" }}
+                          className="inline-flex items-center justify-center px-6 py-3 bg-[#E9FF61] text-black font-bold text-xs uppercase tracking-[0.15em] rounded-full hover:bg-[#d6ed42] hover:scale-[1.03] active:scale-[0.97] transition-all duration-300 shadow-[0_15px_30px_rgba(233,255,97,0.15)] group/btn"
+                          style={{ fontFamily: "'Google Sans', sans-serif" }}
                         >
-                          {i === 0 ? 'Explore Project →' : 'Launch App →'}
+                          <span>{i === 0 ? 'Explore Project' : 'Launch App'}</span>
+                          <span className="ml-1.5 transform group-hover/btn:translate-x-0.5 transition-transform duration-300">→</span>
                         </a>
                       </div>
                     </div>
 
                     {/* RIGHT PANEL: Extended Massive Visual Showcase (Fully seamless background) */}
-                    <div className="flex-[1.2] min-h-[300px] md:min-h-0 relative overflow-hidden bg-transparent group flex items-center justify-center p-6 md:p-8">
-                      <img 
-                        src={project.image} 
-                        alt={project.title} 
-                        className="w-full h-full object-contain opacity-95 transition-transform duration-750 group-hover:scale-[1.02]"
+                    <div className="flex-[1.2] min-h-[180px] md:min-h-0 relative overflow-hidden bg-transparent group flex items-center justify-center p-4 md:p-8">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-contain opacity-95 rounded-2xl md:rounded-[2rem] border border-white/[0.08] shadow-[0_15px_35px_rgba(0,0,0,0.25)] transition-transform duration-750 group-hover:scale-[1.02]"
                       />
                     </div>
 
@@ -398,6 +442,23 @@ export default function App() {
         </div>
       </Section>
 
+      {/* 🌑 DARK EMPHASIS SECTION */}
+      <section className="relative z-10 -mt-16 rounded-t-[3rem] py-16 md:py-32 bg-[#0E0E0E] text-white overflow-hidden">
+        <div className="max-w-[1400px] mx-auto px-4">
+          <p className="text-sm uppercase tracking-widest text-white/50 mb-6">
+            Archive Identity
+          </p>
+          <h2 className="text-[8vw] md:text-[6vw] leading-none font-semibold tracking-tight break-words">
+            AKR - Projects that i worked on.
+          </h2>
+        </div>
+      </section>
+
+      {/* 📦 PORTFOLIO SECTION (Parallel Archive Layout) */}
+      <div id="portfolio" className="relative z-10 -mt-16 rounded-t-[3rem] overflow-hidden">
+        <ParallelArchive />
+      </div>
+
       {/* 🛠 DEVELOPER TOOLKIT (Interactive Folder Layout) */}
       <Section
         id="docs"
@@ -406,13 +467,13 @@ export default function App() {
         className="bg-[#ECEAE6]"
       >
         {/* Folder Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-16 md:gap-24 py-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 md:gap-16 py-12 max-w-6xl mx-auto">
 
           {/* Git Folder */}
           <div className="flex flex-col items-center gap-3">
             <Folder
-              color="#FF6B6B"
-              size={1.7}
+              color="#FF5B5B"
+              label="Git"
               items={["git init", "git clone", "git push"]}
               onClick={() => {
                 setActiveTool("Git Workflow");
@@ -428,14 +489,14 @@ export default function App() {
                 ]);
               }}
             />
-            <p className="text-sm text-black/70">Git</p>
+            <p className="text-xs uppercase tracking-[0.2em] font-extrabold text-black/45 mt-2" style={{ fontFamily: "'Google Sans', sans-serif" }}>Git</p>
           </div>
 
           {/* Bun Folder */}
           <div className="flex flex-col items-center gap-3">
             <Folder
-              color="#6BCB77"
-              size={1.7}
+              color="#E9FF61"
+              label="Bun"
               items={["bun init", "bun install", "bun dev"]}
               onClick={() => {
                 setActiveTool("Bun Toolkit");
@@ -450,14 +511,14 @@ export default function App() {
                 ]);
               }}
             />
-            <p className="text-sm text-black/70">Bun</p>
+            <p className="text-xs uppercase tracking-[0.2em] font-extrabold text-black/45 mt-2" style={{ fontFamily: "'Google Sans', sans-serif" }}>Bun</p>
           </div>
 
           {/* npm Folder */}
           <div className="flex flex-col items-center gap-3">
             <Folder
-              color="#4D96FF"
-              size={1.7}
+              color="#FF8E53"
+              label="npm"
               items={["npm init", "npm install", "npm dev"]}
               onClick={() => {
                 setActiveTool("NPM Workflow");
@@ -472,14 +533,14 @@ export default function App() {
                 ]);
               }}
             />
-            <p className="text-sm text-black/70">npm</p>
+            <p className="text-xs uppercase tracking-[0.2em] font-extrabold text-black/45 mt-2" style={{ fontFamily: "'Google Sans', sans-serif" }}>npm</p>
           </div>
 
           {/* Python Folder */}
           <div className="flex flex-col items-center gap-3">
             <Folder
-              color="#FFD93D"
-              size={1.7}
+              color="#5BE7FF"
+              label="Python"
               items={["uv venv", "uv pip install", "uv run"]}
               onClick={() => {
                 setActiveTool("Python (uv + pip)");
@@ -495,14 +556,14 @@ export default function App() {
                 ]);
               }}
             />
-            <p className="text-sm text-black/70">Python</p>
+            <p className="text-xs uppercase tracking-[0.2em] font-extrabold text-black/45 mt-2" style={{ fontFamily: "'Google Sans', sans-serif" }}>Python</p>
           </div>
 
           {/* Cheatsheets */}
           <div className="flex flex-col items-center gap-3">
             <Folder
-              color="#C77DFF"
-              size={1.7}
+              color="#E07BFF"
+              label="Cheatsheets"
               items={["Patterns", "Layouts", "Auth"]}
               onClick={() => {
                 setActiveTool("Developer Cheatsheets");
@@ -515,136 +576,25 @@ export default function App() {
                 ]);
               }}
             />
-            <p className="text-sm text-black/70">Cheatsheets</p>
+            <p className="text-xs uppercase tracking-[0.2em] font-extrabold text-black/45 mt-2" style={{ fontFamily: "'Google Sans', sans-serif" }}>Cheatsheets</p>
           </div>
 
           {/* Docs Links */}
           <div className="flex flex-col items-center gap-3">
             <Folder
-              color="#00C2A8"
-              size={1.7}
-              items={["React Docs", "Next.js", "Tailwind"]}
+              color="#FFFFFF"
+              label="Docs"
+              items={["akr-refs.vercel.app"]}
               onClick={() => {
-                setActiveTool("External Documentation");
+                setActiveTool("AKR References");
                 setToolCommands([
-                  "React Official Documentation",
-                  "Next.js App Router Docs",
-                  "Tailwind CSS Configuration Guide",
-                  "FastAPI Technical Reference",
-                  "Node.js Runtime Documentation"
+                  "akr-refs.vercel.app"
                 ]);
               }}
             />
-            <p className="text-sm text-black/70">Docs</p>
+            <p className="text-xs uppercase tracking-[0.2em] font-extrabold text-black/45 mt-2" style={{ fontFamily: "'Google Sans', sans-serif" }}>Docs</p>
           </div>
 
-          {/* Roadmap */}
-          <div className="flex flex-col items-center gap-3">
-            <Folder
-              color="#FF9F1C"
-              size={1.7}
-              items={["roadmap.sh", "Frontend", "Backend"]}
-              onClick={() => {
-                setActiveTool("Learning Roadmap");
-                setToolCommands([
-                  "Visit roadmap.sh for full paths",
-                  "Frontend Developer Roadmap",
-                  "Backend Developer Roadmap",
-                  "System Design Interview Prep"
-                ]);
-              }}
-            />
-            <p className="text-sm text-black/70">Roadmap</p>
-          </div>
-
-        </div>
-      </Section>
-
-      {/* 🌑 DARK EMPHASIS SECTION */}
-      <section className="relative z-10 -mt-16 rounded-t-[3rem] py-32 bg-[#0E0E0E] text-white overflow-hidden">
-        <div className="max-w-[1400px] mx-auto px-4">
-          <p className="text-sm uppercase tracking-widest text-white/50 mb-6">
-            Archive Identity
-          </p>
-          <h2 className="text-[10vw] md:text-[8vw] leading-none font-semibold tracking-tight">
-            AKR
-          </h2>
-        </div>
-      </section>
-
-      {/* 📦 PORTFOLIO SECTION (Featured Card Layout) */}
-      <Section
-        id="portfolio"
-        title="Digital Archive."
-        subtitle="Exploring the intersections of systems and intelligence through repository architecture."
-        className="bg-[#ECEAE6]"
-      >
-        {/* DOMINANT FEATURED REPOSITORY */}
-        <div className="w-full mb-8">
-          <div className="rounded-[40px] overflow-hidden bg-white border border-black/[0.04] p-10 md:p-16 flex flex-col md:flex-row items-center justify-between gap-12 group hover:border-black/10 hover:shadow-2xl transition-all duration-700 relative">
-            <div className="max-w-2xl relative z-10">
-              <p className="text-[10px] font-black uppercase tracking-[0.4em] text-red-500 mb-4 opacity-80">Core Repository</p>
-              <h3 className="text-5xl md:text-7xl font-display text-foreground mb-6 leading-none" style={{ fontFamily: "'Instrument Serif', serif" }}>
-                {featuredRepo.name}
-              </h3>
-              <p className="text-xl text-muted-foreground leading-relaxed opacity-80 mb-10 font-medium">
-                {featuredRepo.desc}
-              </p>
-              <div className="flex items-center gap-8">
-                <a
-                  href={featuredRepo.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[10px] font-black text-foreground uppercase tracking-[0.3em] border-b border-foreground/30 hover:border-foreground transition-all pb-1"
-                >
-                  View Source Code →
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* SUPPORTING GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <AnimatePresence mode="popLayout">
-            {visibleRepos.map((repo, i) => (
-              <motion.div
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4 }}
-                key={repo.name}
-                className="group p-10 bg-white/80 backdrop-blur-md border border-black/[0.04] shadow-sm rounded-[2.5rem] hover:bg-white transition-all duration-700 hover:shadow-2xl"
-              >
-                <div className="flex items-center justify-between mb-8">
-                  <span className="text-3xl font-display text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>{repo.name}</span>
-                </div>
-                <p className="text-muted-foreground text-sm font-medium mb-10 opacity-60 line-clamp-2">{repo.desc}</p>
-                <div className="flex items-center justify-between pt-6 border-t border-foreground/5">
-                  <span className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.4em]">{repo.lang}</span>
-                  <a
-                    href={repo.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[10px] font-black text-foreground uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-opacity"
-                  >
-                    View Git →
-                  </a>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
-
-        {/* View More / Show Less Toggle Button */}
-        <div className="mt-16 flex justify-center">
-          <button
-            onClick={() => setShowAllRepos(!showAllRepos)}
-            className="liquid-glass-dark rounded-full px-12 py-4 text-sm text-white hover:scale-[1.05] transition-all duration-300 font-bold tracking-tight"
-          >
-            {showAllRepos ? "Show Less ←" : "View More →"}
-          </button>
         </div>
       </Section>
 
@@ -758,7 +708,7 @@ export default function App() {
             >
               <div className="p-10 md:p-14">
                 <div className="flex justify-between items-center mb-10">
-                  <h3 className="text-4xl font-display text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>
+                  <h3 className="text-4xl font-serif font-bold text-foreground" style={{ fontFamily: "'Times New Roman', Times, serif" }}>
                     {activeTool}
                   </h3>
                   <button
@@ -775,13 +725,16 @@ export default function App() {
                       key={i}
                       className="group flex justify-between items-center bg-[#F4F2EF] border border-black/[0.04] px-6 py-5 rounded-2xl transition-all hover:bg-white hover:shadow-lg"
                     >
-                      <span className="font-mono text-sm text-foreground/80 break-all pr-4">{cmd}</span>
+                      <span className="font-serif text-base text-foreground/90 tracking-wide break-all pr-4" style={{ fontFamily: "'Times New Roman', Times, serif" }}>
+                        {cmd}
+                      </span>
                       <button
                         onClick={() => copyToClipboard(cmd, i)}
                         className={`flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${copiedIndex === i
                           ? 'bg-green-500 text-white'
                           : 'bg-foreground/10 text-foreground/40 hover:bg-foreground hover:text-white'
                           }`}
+                        style={{ fontFamily: "Inter, sans-serif" }}
                       >
                         {copiedIndex === i ? (
                           <>
@@ -791,7 +744,7 @@ export default function App() {
                         ) : (
                           <>
                             <Copy size={12} />
-                            Copy
+                            Copy Link
                           </>
                         )}
                       </button>
@@ -803,6 +756,7 @@ export default function App() {
                   <button
                     onClick={() => setActiveTool(null)}
                     className="text-xs font-black uppercase tracking-[0.4em] opacity-30 hover:opacity-100 transition-opacity"
+                    style={{ fontFamily: "Inter, sans-serif" }}
                   >
                     Close Terminal
                   </button>
@@ -813,5 +767,328 @@ export default function App() {
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+const archiveProjects = [
+  {
+    title: "AI Face Transform",
+    tag: "GAN / Vision",
+    year: "[04 sep]",
+    color: "#5B5BF7",
+    context:
+      "GAN-based face morphing and emotion generation system.",
+    link: "https://github.com/ajaykumarreddy-k",
+  },
+
+  {
+    title: "Medyphas AI",
+    tag: "AI Healthcare",
+    year: "[07 sep]",
+    color: "#7CFF6B",
+    context:
+      "AI-powered patient triage system with intelligent queue optimization.",
+    link: "https://github.com/ajaykumarreddy-k",
+  },
+
+  {
+    title: "AI UI Pipeline",
+    tag: "Python / RAG",
+    year: "[12 sep]",
+    color: "#FFB84D",
+    context:
+      "Structured frontend generation pipeline powered by retrieval systems.",
+    link: "https://github.com/ajaykumarreddy-k",
+  },
+
+  {
+    title: "Tempo",
+    tag: "Weather Systems",
+    year: "[15 sep]",
+    color: "#5BE7FF",
+    context:
+      "Atmospheric forecasting interface focused on adaptive data visualization.",
+    link: "https://github.com/ajaykumarreddy-k",
+  },
+
+  {
+    title: "Narrative Shield",
+    tag: "Disinformation",
+    year: "[18 sep]",
+    color: "#FF5BA0",
+    context:
+      "Misinformation detection engine with contextual reasoning layers.",
+    link: "https://github.com/ajaykumarreddy-k",
+  },
+
+  {
+    title: "Sentinal-X",
+    tag: "Supply Chain",
+    year: "[21 sep]",
+    color: "#D9FF00",
+    context:
+      "Autonomous logistics intelligence and predictive monitoring system.",
+    link: "https://github.com/ajaykumarreddy-k",
+  },
+
+  {
+    title: "Swap Walls",
+    tag: "Android",
+    year: "[24 sep]",
+    color: "#8A7DFF",
+    context:
+      "Minimal wallpaper ecosystem engineered with Kotlin rendering systems.",
+    link: "https://github.com/ajaykumarreddy-k",
+  },
+
+  {
+    title: "Famshare",
+    tag: "Media Streaming",
+    year: "[26 sep]",
+    color: "#FF7B7B",
+    context:
+      "Personal streaming architecture with API-driven playback.",
+    link: "https://github.com/ajaykumarreddy-k",
+  },
+
+  {
+    title: "BrainBuzzer",
+    tag: "Full Stack",
+    year: "[28 sep]",
+    color: "#00D1B2",
+    context:
+      "Interactive multiplayer quiz platform with scalable architecture.",
+    link: "https://github.com/ajaykumarreddy-k",
+  },
+
+  {
+    title: "Certificate Gen",
+    tag: "Automation",
+    year: "[30 sep]",
+    color: "#F7F36B",
+    context:
+      "Automated certificate generation with customizable template pipelines.",
+    link: "https://github.com/ajaykumarreddy-k",
+  },
+
+  {
+    title: "AKR- refs",
+    tag: "Recap & Review",
+    year: "[02 oct]",
+    color: "#FF8E53",
+    context:
+      "All material, docs, and notes for quick recaps and conceptual revision with verified links.",
+    link: "https://akr-refs.vercel.app",
+  },
+
+  {
+    title: "marmady",
+    tag: "UML & Diagrams",
+    year: "[05 oct]",
+    color: "#E07BFF",
+    context:
+      "Uses Mermaid framework to generate flowcharts, live state matrices, and dynamic UML diagrams instantly.",
+    link: "https://marmady.vercel.app/#code=Z3JhcGggVEQKICBTdGFydFsi8J+RiyBXZWxjb21lIHRvIE1hcm1hZHkgU3R1ZGlvIl0KICBJbnB1dFsi8J+TiyBQYXN0ZSBZb3VyIE1lcm1haWQgQ29kZSJdCiAgUmVuZGVyWyLimpnvuI8gTGl2ZSBEaWFncmFtIFJlbmRlcnMgSW5zdGFudGx5Il0KICBPdXRwdXRbIvCflrzvuI8gVmlldyBZb3VyIERpYWdyYW0iXQogIEV4cG9ydFsi8J+TpCBFeHBvcnQgU1ZHIC8gUE5HIC8gUERGIl0KICBEb25lWyLinIUgWW91J3JlIEFsbCBTZXQhIl0KICBDcmVkaXRbIvCfkpYgTWFkZSBieSBBamF5IOKAlCBtYXJtYWR5LnN0dWRpbyJdCgogIFN0YXJ0IC0tPiBJbnB1dAogIElucHV0IC0tPiBSZW5kZXIKICBSZW5kZXIgLS0+IE91dHB1dAogIE91dHB1dCAtLT4gRXhwb3J0CiAgRXhwb3J0IC0tPiBEb25lCiAgRG9uZSAtLT4gQ3JlZGl0CgogIHN0eWxlIFN0YXJ0IGZpbGw6IzFhMWEyZSxzdHJva2U6I2EzZmYzZixzdHJva2Utd2lkdGg6MnB4LGNvbG9yOiNmZmZmZmYKICBzdHlsZSBJbnB1dCBmaWxsOiMwZDFiMmEsc3Ryb2tlOiM0Mjg1RjQsc3Ryb2tlLXdpZHRoOjJweCxjb2xvcjojZmZmZmZmCiAgc3R5bGUgUmVuZGVyIGZpbGw6IzFhMGEyZSxzdHJva2U6I0U5MUU4QyxzdHJva2Utd2lkdGg6MnB4LGNvbG9yOiNmZmZmZmYKICBzdHlsZSBPdXRwdXQgZmlsbDojMGQyYTFiLHN0cm9rZTojMzRBODUzLHN0cm9rZS13aWR0aDoycHgsY29sb3I6I2ZmZmZmZgogIHN0eWxlIEV4cG9ydCBmaWxsOiMyYTFhMGQsc3Ryb2tlOiNGOUFCMDAsc3Ryb2tlLXdpZHRoOjJweCxjb2xvcjojZmZmZmZmCiAgc3R5bGUgRG9uZSBmaWxsOiMxYTBkMWIsc3Ryb2tlOiNFOTFFOEMsc3Ryb2tlLXdpZHRoOjJweCxjb2xvcjojZmZmZmZmCiAgc3R5bGUgQ3JlZGl0IGZpbGw6IzBkMGQwZSxzdHJva2U6I2EzZmYzZixzdHJva2Utd2lkdGg6MXB4LGNvbG9yOiNhYWFhYWE=&theme=neutral",
+  },
+
+  {
+    title: "V2I — Vote 2 India",
+    tag: "AI & Civic Tech",
+    year: "[10 oct]",
+    color: "#E9FF61",
+    context:
+      "Civic Intelligence platform leveraging Google Vertex AI (Gemini 1.5 Pro) for manifesto summarization and Trial EVM simulation.",
+    link: "https://vote2india.vercel.app",
+  },
+];
+
+function ParallelArchive() {
+  const [active, setActive] = useState(0);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const [scrollY, setScrollY] = useState(0);
+  const [isInView, setIsInView] = useState(false);
+  const dragRef = useRef<HTMLDivElement | null>(null);
+  const isDragging = useRef(false);
+  const start = useRef({ x: 0, y: 0 });
+  const translate = useRef({ x: 0, y: 0 });
+  const clickStart = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      setScrollY(-rect.top * 0.16);
+
+      // Detect if ParallelArchive is currently in the viewport
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      setIsInView(inView);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initialize visibility on mount
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handlePointerDown = (e: any) => {
+    isDragging.current = true;
+    start.current = {
+      x: e.clientX - translate.current.x,
+      y: e.clientY - translate.current.y,
+    };
+    clickStart.current = { x: e.clientX, y: e.clientY };
+    e.target.setPointerCapture(e.pointerId);
+    document.body.style.cursor = "grabbing";
+  };
+
+  const handlePointerMove = (e: any) => {
+    if (!isDragging.current) return;
+    const x = e.clientX - start.current.x;
+    const y = e.clientY - start.current.y;
+    translate.current = { x, y };
+
+    if (dragRef.current) {
+      dragRef.current.style.transform = `translate(${x}px, ${y}px)`;
+    }
+  };
+
+  const handlePointerUp = (e: any) => {
+    isDragging.current = false;
+    e.target.releasePointerCapture(e.pointerId);
+    document.body.style.cursor = "default";
+
+    // Detect click vs drag using coordinates delta
+    const dx = e.clientX - clickStart.current.x;
+    const dy = e.clientY - clickStart.current.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    if (distance < 5) {
+      const projectLink = archiveProjects[active].link;
+      if (projectLink) {
+        window.open(projectLink, "_blank");
+      }
+    }
+  };
+
+  return (
+    <section
+      ref={sectionRef}
+      style={{
+        backgroundColor: archiveProjects[active].color,
+      }}
+      className="relative w-full min-h-screen py-14 md:py-20 pb-20 md:pb-28 overflow-hidden text-black transition-colors duration-700 ease-out font-['Google_Sans','sans-serif']"
+    >
+      {/* grain */}
+      <div className="absolute inset-0 opacity-[0.04] mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+
+      {/* vignette */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_10%,rgba(0,0,0,0.08))]" />
+
+      {/* toolbar — hidden on mobile to avoid crowding */}
+      <div
+        className="hidden sm:flex fixed top-5 right-5 z-50 items-center gap-3 bg-black/85 text-white rounded-2xl px-4 py-3 backdrop-blur-xl transition-all duration-700 ease-out"
+        style={{
+          opacity: isInView ? 1 : 0,
+          transform: `scale(${isInView ? 1 : 0.85})`,
+          pointerEvents: isInView ? "auto" : "none",
+        }}
+      >
+        <div className="w-2 h-2 rounded-full bg-white/60" />
+        <Command className="w-4 h-4 opacity-70" />
+        <ArrowUpRight className="w-4 h-4 opacity-70" />
+      </div>
+
+      {/* projects */}
+      <div className="relative z-10 flex flex-col gap-1 pt-10 md:pt-16 px-5 md:px-14">
+        {archiveProjects.map((project, index) => {
+          const activeProject = active === index;
+          return (
+            <div
+              key={index}
+              onMouseEnter={() => setActive(index)}
+              onClick={() => {
+                if (project.link) {
+                  window.open(project.link, "_blank");
+                }
+              }}
+              className={`relative flex items-center gap-5 transition-all duration-500 cursor-pointer ${activeProject ? "opacity-100" : "opacity-20 hover:opacity-40"
+                }`}
+            >
+              {/* title */}
+              <h1 className="text-[32px] sm:text-[44px] md:text-[78px] leading-none tracking-[-0.06em] md:tracking-[-0.08em] font-medium break-words">
+                {project.title}
+              </h1>
+
+              {/* meta */}
+              <div className="flex items-center gap-3 mt-2">
+                <span className={`text-[10px] px-4 py-2 rounded-full transition-all ${activeProject ? "bg-black/10 backdrop-blur-md" : ""}`}>
+                  {project.tag}
+                </span>
+                <span className="text-[10px] opacity-50">{project.year}</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* floating project context — smaller and tucked in on mobile */}
+      <div
+        className="fixed right-3 bottom-3 z-40 transition-all duration-700 ease-out"
+        style={{
+          transform: `translateY(${scrollY}px) scale(${isInView ? 1 : 0.85})`,
+          opacity: isInView ? 1 : 0,
+          pointerEvents: isInView ? "auto" : "none",
+        }}
+      >
+        <div
+          ref={dragRef}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          className="relative w-[220px] h-[200px] sm:w-[300px] sm:h-[270px] rounded-[20px] sm:rounded-[28px] overflow-hidden cursor-grab active:cursor-grabbing bg-[#E9FF61] shadow-[0_30px_80px_rgba(0,0,0,0.18)]"
+        >
+          {/* texture */}
+          <div className="absolute inset-0 opacity-[0.03] mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+
+          {/* archive text */}
+          <div className="absolute -top-2 left-0 text-[60px] sm:text-[84px] font-black tracking-[-0.1em] leading-[0.8] opacity-[0.06] uppercase pointer-events-none select-none">
+            ARCHIVE
+          </div>
+
+          {/* content */}
+          <div className="relative z-10 h-full flex flex-col justify-between p-4 sm:p-6">
+            {/* top */}
+            <div>
+              <div className="flex items-center justify-between mb-6">
+                <span className="text-[9px] tracking-[0.25em] uppercase opacity-50">Project Context</span>
+                <ArrowUpRight className="w-3 h-3 opacity-60" />
+              </div>
+              <h2 className="text-[22px] sm:text-[34px] leading-[0.88] tracking-[-0.06em] sm:tracking-[-0.08em] font-bold mb-3 sm:mb-4">
+                {archiveProjects[active].title}
+              </h2>
+              <p className="text-[11px] leading-relaxed max-w-[220px] opacity-70">
+                {archiveProjects[active].context}
+              </p>
+            </div>
+
+            {/* bottom */}
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-2">
+                <div className="bg-black/5 rounded-2xl p-3">
+                  <p className="text-[9px] opacity-40 mb-1">SIGNAL</p>
+                  <h3 className="text-lg tracking-[-0.06em] font-bold">98%</h3>
+                </div>
+                <div className="bg-black/5 rounded-2xl p-3">
+                  <p className="text-[9px] opacity-40 mb-1">LATENCY</p>
+                  <h3 className="text-lg tracking-[-0.06em] font-bold">04ms</h3>
+                </div>
+              </div>
+              <div className="flex items-center justify-between text-[9px] uppercase tracking-[0.25em] opacity-50">
+                <span>Ajay Kumar Reddy K</span>
+                <span>Archive Mode</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
