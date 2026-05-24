@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Mail, Copy, Check, X, FileText } from 'lucide-react';
 import LorenzoInteractivePortrait from './components/LorenzoInteractivePortrait';
+import Preloader from './components/Preloader';
+import ScrollStack, { ScrollStackItem } from './components/ScrollStack';
 
 /**
  * CONFIGURATION: Hero background asset
@@ -12,8 +14,8 @@ const BACKGROUND_ASSET = "/sakura.gif";
  * REUSABLE SECTION WRAPPER (LAYERED OVERLAP LAYOUT)
  * Implements a wide layout (1400px) with overlapping rounded-top sections and inner depth.
  */
-const Section = ({ id, title, subtitle, children, className = "bg-[#F8F7F5]" }: any) => (
-  <section id={id} className={`relative z-10 w-full -mt-16 rounded-t-[3rem] py-28 px-4 md:px-5 shadow-[0_-20px_40px_-20px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(0,0,0,0.04)] ${className}`}>
+const Section = ({ id, title, subtitle, children, className = "bg-[#F8F7F5]", isFirst = false }: any) => (
+  <section id={id} className={`relative z-10 w-full ${isFirst ? "mt-0" : "-mt-16"} rounded-t-[3rem] py-28 px-4 md:px-5 shadow-[0_-20px_40px_-20px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(0,0,0,0.04)] ${className}`}>
     <motion.div
       initial={{ opacity: 0, scale: 0.98 }}
       whileInView={{ opacity: 1, scale: 1 }}
@@ -106,8 +108,12 @@ const Folder = ({ color, items, size = 1.4, onClick }: { color: string, items: a
 export default function App() {
   const isVideo = BACKGROUND_ASSET.toLowerCase().endsWith('.mp4');
 
+  // Preloader State
+  const [isPreloaderActive, setIsPreloaderActive] = useState(true);
+
   // Toolkit Modal State
   const [activeTool, setActiveTool] = useState<string | null>(null);
+
   const [toolCommands, setToolCommands] = useState<string[]>([]);
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
   const [showAllRepos, setShowAllRepos] = useState(false);
@@ -149,87 +155,132 @@ export default function App() {
   return (
     <div className="relative min-h-screen w-full bg-background font-sans selection:bg-foreground/10 selection:text-foreground">
 
-      {/* 🚀 FIXED NAVIGATION (Max-Width Synchronized) */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-foreground/5">
-        <div className="flex flex-row items-center justify-between px-5 py-5 max-w-[1400px] mx-auto w-full">
-          <div
-            className="text-3xl tracking-tight text-muted-foreground font-display cursor-pointer"
-            style={{ fontFamily: "'Instrument Serif', serif" }}
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          >
-            AKR®
+      {/* 🌀 High-Fidelity Greeting Preloader */}
+      <Preloader active={isPreloaderActive} setActive={setIsPreloaderActive} />
+
+      {/* ↺ Subtle Floating Replay Trigger */}
+      {!isPreloaderActive && (
+        <motion.button
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 0.4, scale: 1 }}
+          whileHover={{ opacity: 1, scale: 1.08 }}
+          onClick={() => setIsPreloaderActive(true)}
+          className="fixed bottom-6 left-6 z-[99] bg-[#f0ede6]/95 dark:bg-black/95 backdrop-blur-md border border-black/10 dark:border-white/10 w-11 h-11 rounded-full flex items-center justify-center text-[#0a0a0a] dark:text-[#f0ede6] shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:shadow-xl hover:scale-105 cursor-pointer transition-all duration-300"
+          title="Replay Preloader Intro"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></svg>
+        </motion.button>
+      )}
+
+      {/* 🚀 GIMAEV-INSPIRED EDITORIAL HOME PAGE & TITLE SCREEN */}
+      <section className="relative min-h-screen bg-[#FDFCF7] text-[#0a0a0a] font-mori flex flex-col justify-start px-6 py-6 md:px-16 md:py-8 overflow-hidden">
+
+        {/* Subtle cinematic physical grain texture overlay */}
+        <div className="absolute inset-0 bg-grain pointer-events-none z-10 opacity-[0.025]" />
+
+        {/* Top Header Row */}
+        <div className="w-full flex flex-col md:flex-row md:items-start justify-between gap-8 z-20">
+
+          {/* Logo & Vol metadata (Left Column top) */}
+          <div className="flex flex-col gap-2">
+            <h1
+              className="text-2xl font-bold tracking-tight text-[#0a0a0a]"
+              style={{ fontFamily: "'PP Mori', sans-serif" }}
+            >
+              AKR. Folio 🗿
+            </h1>
+            <p className="text-[10px] uppercase tracking-[0.25em] text-[#0a0a0a]/50 font-bold leading-relaxed">
+              Selected Engineering &amp; AI Works, vol. 2 <br />
+              for 2022 — 2026
+            </p>
           </div>
-          <div className="hidden md:flex items-center gap-10">
+
+        </div>
+
+        {/* Core 2-Column Content Layout */}
+        <div className="w-full flex flex-col md:flex-row gap-6 md:gap-16 items-start z-20 mt-6 md:mt-12 transition-transform duration-500">
+
+          {/* Left Column (Quiet taglines on desktop) */}
+          <div className="w-full md:w-[25%] hidden md:flex flex-col justify-between h-[20vh]">
+            <div className="text-[10px] uppercase tracking-[0.25em] text-[#0a0a0a]/40 font-bold leading-relaxed">
+              Quiet confidence. <br />
+              Built in silence, <br />
+              designed to resonate.
+            </div>
+          </div>
+
+          {/* Right Column (The primary content - shifted upwards to fit beautifully in the upper viewport) */}
+          <div className="w-full md:w-[70%] max-w-4xl flex flex-col items-start gap-4 md:gap-6 md:-translate-y-[7vh] lg:-translate-y-[8vh]">
+
+            {/* ABOUT ME label */}
+            <div className="text-[10px] uppercase tracking-[0.3em] text-[#0a0a0a]/40 font-black">
+              ABOUT ME
+            </div>
+
+            {/* Huge, Elegant Editorial Biography */}
+            <h2
+              className="text-2xl sm:text-3xl md:text-[2.5rem] font-normal leading-[1.25] text-[#0a0a0a] tracking-[-0.02em] max-w-4xl font-mori"
+              style={{ fontFamily: "'PP Mori', sans-serif" }}
+            >
+              Hello there! My name is <span className="font-bold">Ajay Kumar Reddy K.</span> <br />
+              I’m a Creative Technologist and AI Engineer, currently building advanced machine learning suites and intelligent triage interfaces. Previously, I built Medyphas AI and led autonomous supply-chain models. <br />
+              Beyond building AI pipelines, I enjoy tinkering with generative adversarial networks, exploring computer vision algorithms, and publishing open-source experiments.
+            </h2>
+
+            {/* Rounded Portrait Image with optimized aspect ratio for perfect viewport visibility */}
+            <div className="w-full max-w-md rounded-[2rem] overflow-hidden border border-black/[0.04] aspect-[16/10] relative group shadow-sm bg-stone-100">
+              <img
+                src="/footerbackground.jpeg"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "/me.png";
+                }}
+                alt="Ajay Kumar Reddy K."
+                className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-700"
+              />
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* Bottom Navigation & Metadata Footer Row (Pushed to the absolute bottom dynamically) */}
+        <div className="w-full flex flex-col sm:flex-row items-end sm:items-center justify-between gap-6 z-20 mt-auto border-t border-black/[0.05] pt-6">
+
+          {/* Bottom Left: Rounded Navigation Pills */}
+          <div className="flex gap-2">
             {[
-              { label: 'Projects', id: 'projects' },
-              { label: 'Docs', id: 'docs' },
-              { label: 'Portfolio', id: 'portfolio' },
-              { label: 'Reach me', id: 'reach-me' },
-            ].map((item) => (
+              { label: 'Works', href: '#projects', active: false },
+              { label: 'About', href: '#', active: true },
+              { label: 'Contact', href: '#reach-me', active: false }
+            ].map((pill, i) => (
               <a
-                key={item.id}
-                href={`#${item.id}`}
-                className="text-sm text-muted-foreground/70 hover:text-muted-foreground transition-all duration-300 font-medium tracking-tight"
+                key={i}
+                href={pill.href}
+                className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-[0.15em] border transition-all duration-300 ${pill.active
+                    ? 'bg-[#0a0a0a] text-white border-transparent'
+                    : 'bg-transparent text-[#0a0a0a]/60 border-black/10 hover:border-black hover:text-[#0a0a0a]'
+                  }`}
+                style={{ fontFamily: "'PP Mori', sans-serif" }}
               >
-                {item.label}
+                {pill.label}
               </a>
             ))}
           </div>
-          <a
-            href="#projects"
-            className="liquid-glass-dark rounded-full px-8 py-2.5 text-sm text-white hover:scale-[1.03] transition-transform"
-          >
-            Explore →
-          </a>
-        </div>
-      </nav>
 
-      {/* 🌸 HERO SECTION (UNTOUCHABLE) */}
-      <section className="relative h-screen min-h-[800px] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          {isVideo ? (
-            <video src={BACKGROUND_ASSET} autoPlay muted loop playsInline className="w-full h-full object-cover" />
-          ) : (
-            <img src={BACKGROUND_ASSET} alt="Background" className="w-full h-full object-cover" />
-          )}
-          <div className="absolute inset-0 bg-white/40 pointer-events-none" />
+          {/* Bottom Right: Metadata Columns */}
+          <div className="flex gap-12 text-left">
+            <div>
+              <div className="text-[9px] uppercase tracking-[0.25em] text-[#0a0a0a]/40 font-black mb-1">POSITION</div>
+              <div className="text-xs font-bold uppercase tracking-[0.1em] text-[#0a0a0a]/80" style={{ fontFamily: "'PP Mori', sans-serif" }}>Design Lead</div>
+            </div>
+            <div>
+              <div className="text-[9px] uppercase tracking-[0.25em] text-[#0a0a0a]/40 font-black mb-1">EXPERIENCE</div>
+              <div className="text-xs font-bold uppercase tracking-[0.1em] text-[#0a0a0a]/80" style={{ fontFamily: "'PP Mori', sans-serif" }}>3 years</div>
+            </div>
+          </div>
+
         </div>
 
-        <div className="relative z-10 max-w-7xl">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="text-6xl sm:text-8xl md:text-[9rem] leading-[0.85] tracking-[-0.04em] font-normal font-display text-foreground"
-            style={{ fontFamily: "'Instrument Serif', serif" }}
-          >
-            Built in <em className="not-italic text-muted-foreground">silence.</em> <br />
-            Designed to <em className="not-italic text-muted-foreground">resonate.</em>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-            className="text-muted-foreground text-lg sm:text-xl max-w-2xl mt-12 mx-auto font-medium leading-relaxed"
-          >
-            A personal archive of ideas, systems, and experiments.<br />
-            Every project reflects thought, intention, and identity.<br />
-            By Ajay Kumar Reddy KrishnareddyGari
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.4 }}
-            className="mt-16"
-          >
-            <a
-              href="#projects"
-              className="liquid-glass-dark rounded-full px-16 py-6 text-xl text-white hover:scale-[1.05] cursor-pointer inline-block"
-            >
-              Explore →
-            </a>
-          </motion.div>
-        </div>
       </section>
 
       {/* 🛠 PROJECTS SECTION (Featured Card Layout) */}
@@ -238,70 +289,112 @@ export default function App() {
         title="Selected Works."
         subtitle="A curated archive of design-led engineering and experimental digital solutions."
         className="bg-[#F8F7F5]"
+        isFirst={true}
       >
         {/* DOMINANT FEATURED CARD */}
-        <div className="w-full mb-8">
-          <div className="rounded-[40px] overflow-hidden bg-white border border-black/[0.04] p-10 md:p-16 flex flex-col md:flex-row items-center justify-between gap-12 group hover:border-black/10 hover:shadow-2xl transition-all duration-700">
-            {/* LEFT CONTENT */}
-            <div className="max-w-xl flex-1">
-              <p className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground opacity-60">Featured Work</p>
-              <h3 className="text-5xl md:text-7xl font-display text-foreground mt-6 mb-8 leading-none" style={{ fontFamily: "'Instrument Serif', serif" }}>
-                {featuredProject.title}
-              </h3>
-              <p className="text-xl text-muted-foreground leading-relaxed opacity-80 mb-10 font-medium">
-                {featuredProject.desc}
-              </p>
-              <div className="flex flex-wrap gap-3 mb-12">
-                {featuredProject.tags.map(tag => (
-                  <span key={tag} className="px-5 py-2 bg-foreground/5 rounded-full text-[10px] uppercase tracking-[0.2em] text-foreground/70 font-bold border border-foreground/10">{tag}</span>
-                ))}
-              </div>
-              <a
-                href={featuredProject.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-10 py-5 rounded-full border border-foreground/20 text-foreground font-black text-sm uppercase tracking-[0.2em] hover:bg-foreground hover:text-background transition-all duration-300 inline-block"
-              >
-                Explore Project →
-              </a>
-            </div>
+        {/* PREMIUM SCROLL STACK PORTFOLIO LAYOUT */}
+        <div className="max-w-6xl mx-auto py-12 pb-20 px-4 md:px-0">
+          <ScrollStack 
+            itemDistance={90}
+            itemScale={0.025}
+            itemStackDistance={35}
+            stackPosition="20%"
+            scaleEndPosition="10%"
+            baseScale={0.88}
+            rotationAmount={1.5}
+            blurAmount={1.5}
+            useWindowScroll={true}
+          >
+            {projects.map((project, i) => {
+              const cardBackgrounds = [
+                'bg-gradient-to-br from-stone-900 to-stone-950 border border-white/5 shadow-2xl',
+                'bg-gradient-to-br from-[#1a1815] to-[#0f0e0c] border border-white/5 shadow-2xl',
+                'bg-gradient-to-br from-[#121620] to-[#0a0d14] border border-white/5 shadow-2xl',
+                'bg-gradient-to-br from-[#161a24] to-[#0e1118] border border-white/5 shadow-2xl'
+              ];
+              
+              return (
+                <ScrollStackItem 
+                  key={i}
+                  itemClassName="bg-gradient-to-br from-[#121318] to-[#090A0D] border border-white/[0.06] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.4)] text-white"
+                >
+                  <div className="w-full h-full flex flex-col md:flex-row items-stretch min-h-[440px]">
+                    
+                    {/* LEFT PANEL: Rich Editorial Information */}
+                    <div className="flex-[0.8] flex flex-col justify-between p-8 md:p-12 min-h-[300px] md:min-h-0">
+                      <div>
+                        {/* Top Row: Index & Category */}
+                        <div className="flex justify-between items-center text-[10px] font-black tracking-[0.3em] text-white/40 uppercase mb-5">
+                          <span>0{i + 1} / {project.tags[0] || 'ENGINEERING'}</span>
+                          <span className="px-3 py-1 bg-white/10 rounded-full border border-white/5 text-[9px] tracking-widest font-bold text-white/60">ACTIVE PORT</span>
+                        </div>
 
-            {/* RIGHT VISUAL */}
-            <div className={`w-full md:w-[45%] rounded-[3rem] aspect-[4/3] bg-gradient-to-br ${featuredProject.color} via-transparent to-transparent flex items-center justify-center border border-foreground/5 group-hover:scale-[1.02] transition-transform duration-700 overflow-hidden relative`}>
-              <img src={featuredProject.image} alt={featuredProject.label} className="absolute inset-0 w-full h-full object-contain opacity-100 transition-opacity duration-700" />
-              <div className="relative z-10 text-8xl text-foreground opacity-10 font-display" style={{ fontFamily: "'Instrument Serif', serif" }}>
-                {featuredProject.label}
-              </div>
-            </div>
-          </div>
-        </div>
+                        {/* Title */}
+                        <h3 
+                          className="text-2xl md:text-4xl font-normal tracking-tight text-white mb-4 leading-tight font-mori"
+                          style={{ fontFamily: "'PP Mori', sans-serif" }}
+                        >
+                          {project.title}
+                        </h3>
 
-        {/* SUPPORTING GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {remainingProjects.map((project, i) => (
-            <div key={i} className="group overflow-hidden bg-white/80 backdrop-blur-md border border-black/[0.04] shadow-sm rounded-[2.5rem] hover:bg-white transition-all duration-700 hover:-translate-y-2 cursor-pointer hover:shadow-xl">
-              <div className={`aspect-[4/3] bg-gradient-to-br ${project.color} via-transparent to-transparent flex items-center justify-center p-10 transition-all duration-700 group-hover:scale-105 relative overflow-hidden`}>
-                <img src={project.image} alt={project.label} className="absolute inset-0 w-full h-full object-contain opacity-100 transition-opacity duration-700" />
-                <div className="relative z-10 text-4xl text-foreground opacity-10 group-hover:opacity-40 transition-opacity font-display" style={{ fontFamily: "'Instrument Serif', serif" }}>
-                  {project.label}
-                </div>
-              </div>
-              <div className="p-10">
-                <h3 className="text-3xl font-display text-foreground mb-4" style={{ fontFamily: "'Instrument Serif', serif" }}>{project.title}</h3>
-                <p className="text-muted-foreground text-sm mb-8 leading-relaxed font-medium opacity-60 line-clamp-2">{project.desc}</p>
-                <div className="pt-6 border-t border-foreground/5 flex items-center justify-between">
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[10px] font-black text-foreground uppercase tracking-[0.3em] hover:border-b border-foreground transition-all duration-300"
-                  >
-                    Launch App →
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
+                        {/* Description */}
+                        <p 
+                          className="text-sm md:text-base text-white/70 leading-relaxed max-w-xl font-medium font-mori mb-6"
+                          style={{ fontFamily: "'PP Mori', sans-serif" }}
+                        >
+                          {project.desc}
+                        </p>
+                      </div>
+
+                      {/* Bottom Row: Tags & CTA */}
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-5 border-t border-white/10">
+                        <div className="flex flex-wrap gap-2">
+                          {project.tags.length > 0 ? (
+                            project.tags.map((tag) => (
+                              <span 
+                                key={tag} 
+                                className="px-3.5 py-1 bg-white/10 rounded-full text-[9px] uppercase tracking-[0.2em] font-bold text-white/60 border border-white/5"
+                                style={{ fontFamily: "'PP Mori', sans-serif" }}
+                              >
+                                {tag}
+                              </span>
+                            ))
+                          ) : (
+                            <span 
+                              className="px-3.5 py-1 bg-white/10 rounded-full text-[9px] uppercase tracking-[0.2em] font-bold text-white/60 border border-white/5"
+                              style={{ fontFamily: "'PP Mori', sans-serif" }}
+                            >
+                              Engineering &amp; AI
+                            </span>
+                          )}
+                        </div>
+
+                        <a
+                          href={project.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center px-6 py-3 bg-white text-black font-black text-xs uppercase tracking-[0.2em] rounded-full hover:bg-neutral-200 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-md"
+                          style={{ fontFamily: "'PP Mori', sans-serif" }}
+                        >
+                          {i === 0 ? 'Explore Project →' : 'Launch App →'}
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* RIGHT PANEL: Extended Massive Visual Showcase (Fully seamless background) */}
+                    <div className="flex-[1.2] min-h-[300px] md:min-h-0 relative overflow-hidden bg-transparent group flex items-center justify-center p-6 md:p-8">
+                      <img 
+                        src={project.image} 
+                        alt={project.title} 
+                        className="w-full h-full object-contain opacity-95 transition-transform duration-750 group-hover:scale-[1.02]"
+                      />
+                    </div>
+
+                  </div>
+                </ScrollStackItem>
+              );
+            })}
+          </ScrollStack>
         </div>
       </Section>
 
