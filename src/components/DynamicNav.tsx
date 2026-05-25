@@ -87,7 +87,7 @@ export const DynamicNav = () => {
 
   return (
     <div
-      className="fixed top-6 left-1/2 -translate-x-1/2 z-[998] select-none pointer-events-auto"
+      className="fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-[998] select-none pointer-events-auto"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -102,7 +102,7 @@ export const DynamicNav = () => {
           damping: 24,
         }}
         className={`flex items-center bg-[#0a0a0a]/90 dark:bg-black/90 border border-white/10 text-white rounded-full shadow-[0_10px_35px_rgba(0,0,0,0.3)] backdrop-blur-md cursor-pointer overflow-hidden p-1.5 transition-colors duration-300 ${
-          isOpen ? "gap-2.5 px-3 py-1.5" : "gap-3 px-3 py-1.5 w-[92px]"
+          isOpen ? "gap-1.5 sm:gap-2.5 px-2 sm:px-3 py-1.5" : "gap-3 px-3 py-1.5 w-[92px]"
         }`}
       >
         {/* Left Side: Avatar/Initials Logo + Morphing Name Signature */}
@@ -121,7 +121,7 @@ export const DynamicNav = () => {
                 animate={{ opacity: 1, width: "auto" }}
                 exit={{ opacity: 0, width: 0 }}
                 transition={{ duration: 0.2 }}
-                className="text-white/90 text-[11px] font-bold tracking-wider whitespace-nowrap pr-2 font-sans border-r border-white/10 mr-1"
+                className="hidden sm:inline text-white/90 text-[11px] font-bold tracking-wider whitespace-nowrap pr-2 font-sans border-r border-white/10 mr-1"
               >
                 Ajay kumar Reddy K
               </motion.span>
@@ -150,7 +150,7 @@ export const DynamicNav = () => {
                     }}
                     onMouseEnter={() => setHoveredIndex(idx)}
                     onMouseLeave={() => setHoveredIndex(null)}
-                    className={`relative px-3.5 py-1.5 text-xs font-semibold rounded-full transition-colors duration-300 tracking-wide font-sans cursor-pointer ${
+                    className={`relative px-2.5 sm:px-3.5 py-1.5 text-[10px] sm:text-xs font-semibold rounded-full transition-colors duration-300 tracking-wide font-sans cursor-pointer ${
                       isActive ? "text-[#0a0a0a] dark:text-[#0a0a0a]" : "text-white/60 hover:text-white"
                     }`}
                   >

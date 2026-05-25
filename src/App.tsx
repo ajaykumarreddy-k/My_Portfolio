@@ -185,8 +185,8 @@ export default function App() {
   return (
     <div className="relative min-h-screen w-full bg-background font-sans selection:bg-foreground/10 selection:text-foreground overflow-x-hidden">
 
-      {/* 👀 Floating Cursor-Tracking Eyeballs */}
-      {!isPreloaderActive && <InteractiveEyes />}
+      {/* 👀 Floating Cursor-Tracking Eyeballs - hidden on mobile to avoid overlapping replay button */}
+      {!isPreloaderActive && <div className="hidden md:block"><InteractiveEyes /></div>}
 
       {/* 🧭 Morphing Dynamic Sticky Nav Bar */}
       {!isPreloaderActive && <DynamicNav />}
@@ -204,7 +204,7 @@ export default function App() {
           animate={{ opacity: 0.4, scale: 1 }}
           whileHover={{ opacity: 1, scale: 1.08 }}
           onClick={() => setIsPreloaderActive(true)}
-          className="fixed bottom-6 left-6 z-[99] bg-[#f0ede6]/95 dark:bg-black/95 backdrop-blur-md border border-black/10 dark:border-white/10 w-11 h-11 rounded-full flex items-center justify-center text-[#0a0a0a] dark:text-[#f0ede6] shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:shadow-xl hover:scale-105 cursor-pointer transition-all duration-300"
+          className="fixed bottom-6 left-6 z-[99] bg-[#f0ede6]/95 dark:bg-black/95 backdrop-blur-md border border-black/10 dark:border-white/10 w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center text-[#0a0a0a] dark:text-[#f0ede6] shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:shadow-xl hover:scale-105 cursor-pointer transition-all duration-300"
           title="Replay Preloader Intro"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></svg>
@@ -212,7 +212,7 @@ export default function App() {
       )}
 
       {/* 🚀 GIMAEV-INSPIRED EDITORIAL HOME PAGE & TITLE SCREEN */}
-      <section className="relative min-h-screen bg-[#FDFCF7] text-[#0a0a0a] font-mori flex flex-col justify-start px-5 py-5 md:px-16 md:py-8 overflow-hidden">
+      <section className="relative min-h-screen bg-[#FDFCF7] text-[#0a0a0a] font-mori flex flex-col justify-start px-5 pt-20 pb-5 md:px-16 md:py-8 overflow-hidden">
 
         {/* Subtle cinematic physical grain texture overlay */}
         <div className="absolute inset-0 bg-grain pointer-events-none z-10 opacity-[0.025]" />
@@ -258,7 +258,7 @@ export default function App() {
 
             {/* Huge, Elegant Editorial Biography */}
             <h2
-              className="text-sm sm:text-xl md:text-[2.5rem] font-normal leading-[1.5] sm:leading-[1.35] md:leading-[1.25] text-[#0a0a0a] tracking-[-0.01em] md:tracking-[-0.02em] max-w-4xl font-sans"
+              className="text-[3.8vw] sm:text-xl md:text-[2.5rem] font-normal leading-[1.55] sm:leading-[1.35] md:leading-[1.25] text-[#0a0a0a] tracking-[-0.01em] md:tracking-[-0.02em] max-w-4xl font-sans"
               style={{ fontFamily: "'Google Sans', sans-serif" }}
             >
               Hello there! My name is <span className="font-bold">Ajay Kumar Reddy K.</span> <br />
@@ -288,7 +288,7 @@ export default function App() {
                 <img
                   src="/Stickers/Stickerview1-128-removebg-preview.png"
                   alt="Linux sticker"
-                  className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 object-contain drop-shadow-lg hover:scale-110 hover:-rotate-3 transition-all duration-300 cursor-pointer select-none"
+                  className="w-12 h-12 sm:w-24 sm:h-24 md:w-32 md:h-32 object-contain drop-shadow-lg hover:scale-110 hover:-rotate-3 transition-all duration-300 cursor-pointer select-none"
                   style={{ transform: "rotate(-8deg)" }}
                   draggable={false}
                 />
@@ -297,7 +297,7 @@ export default function App() {
                 <img
                   src="/Stickers/figma-adesivo-sticker-removebg-preview.png"
                   alt="Figma sticker"
-                  className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain drop-shadow-lg hover:scale-110 hover:rotate-3 transition-all duration-300 cursor-pointer select-none"
+                  className="w-9 h-9 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain drop-shadow-lg hover:scale-110 hover:rotate-3 transition-all duration-300 cursor-pointer select-none"
                   style={{ transform: "rotate(6deg)" }}
                   draggable={false}
                 />
@@ -306,7 +306,7 @@ export default function App() {
                 <img
                   src="/Stickers/st_small_507x507-pad_600x600_f8f8f8-removebg-preview.png"
                   alt="GitHub sticker"
-                  className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 object-contain drop-shadow-lg hover:scale-110 hover:-rotate-2 transition-all duration-300 cursor-pointer select-none"
+                  className="w-12 h-12 sm:w-24 sm:h-24 md:w-32 md:h-32 object-contain drop-shadow-lg hover:scale-110 hover:-rotate-2 transition-all duration-300 cursor-pointer select-none"
                   style={{ transform: "rotate(-4deg)" }}
                   draggable={false}
                 />
@@ -315,7 +315,7 @@ export default function App() {
                 <img
                   src="/Stickers/image.png"
                   alt="Code sticker"
-                  className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain drop-shadow-lg hover:scale-110 hover:rotate-5 transition-all duration-300 cursor-pointer select-none"
+                  className="w-9 h-9 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain drop-shadow-lg hover:scale-110 hover:rotate-5 transition-all duration-300 cursor-pointer select-none"
                   style={{ transform: "rotate(10deg)" }}
                   draggable={false}
                 />
@@ -511,7 +511,7 @@ export default function App() {
         className="bg-[#ECEAE6]"
       >
         {/* Folder Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 md:gap-16 py-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-16 py-8 md:py-12 max-w-6xl mx-auto px-2 md:px-0">
 
           {/* Git Folder */}
           <div className="flex flex-col items-center gap-3">
@@ -650,13 +650,16 @@ export default function App() {
         className="bg-[#F8F7F5]"
       >
         <div className="w-full">
-          <div className="rounded-[40px] overflow-hidden bg-[#0a0a0a] border border-black/[0.04] p-2 md:p-4 flex flex-col items-center justify-center group hover:border-black/10 hover:shadow-2xl transition-all duration-700 relative aspect-[4/3] md:aspect-[21/9]">
+          <div className="rounded-[28px] md:rounded-[40px] overflow-hidden bg-[#0a0a0a] border border-black/[0.04] p-2 md:p-4 flex flex-col items-center justify-center group hover:border-black/10 hover:shadow-2xl transition-all duration-700 relative aspect-[4/3] md:aspect-[21/9]">
             <div className="w-full h-full rounded-[2rem] overflow-hidden relative bg-black">
               <LorenzoInteractivePortrait backgroundColor="#000000" colorBgVec3="0.0,0.0,0.0" />
             </div>
           </div>
         </div>
       </Section>
+
+      {/* 🔗 STAGGERED FLIP REVEAL SOCIAL LINKS */}
+      <RevealLinks />
 
       {/* 🎬 CINEMATIC FOOTER */}
       <footer className="relative w-full bg-black text-white overflow-hidden" id="reach-me">
@@ -748,11 +751,11 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.95, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 30 }}
-              className="relative w-full max-w-2xl bg-white rounded-[2.5rem] shadow-2xl overflow-hidden"
+              className="relative w-full max-w-2xl bg-white rounded-[2rem] md:rounded-[2.5rem] shadow-2xl overflow-hidden mx-2"
             >
-              <div className="p-10 md:p-14">
-                <div className="flex justify-between items-center mb-10">
-                  <h3 className="text-4xl font-serif font-bold text-foreground" style={{ fontFamily: "'Times New Roman', Times, serif" }}>
+              <div className="p-6 md:p-14">
+                <div className="flex justify-between items-center mb-6 md:mb-10">
+                  <h3 className="text-2xl md:text-4xl font-serif font-bold text-foreground" style={{ fontFamily: "'Times New Roman', Times, serif" }}>
                     {activeTool}
                   </h3>
                   <button
@@ -763,7 +766,7 @@ export default function App() {
                   </button>
                 </div>
 
-                <div className="space-y-4 max-h-[450px] overflow-y-auto pr-4 custom-scrollbar">
+                <div className="space-y-3 md:space-y-4 max-h-[50vh] md:max-h-[450px] overflow-y-auto pr-2 md:pr-4 custom-scrollbar overscroll-contain" style={{ WebkitOverflowScrolling: 'touch' as any }}>
                   {toolCommands.map((cmd, i) => (
                     <div
                       key={i}
@@ -1017,8 +1020,10 @@ function ParallelArchive() {
       ref={sectionRef}
       style={{
         backgroundColor: archiveProjects[active].color,
+        transition: 'background-color 700ms ease-out',
+        WebkitTransition: 'background-color 700ms ease-out',
       }}
-      className="relative w-full min-h-screen py-14 md:py-20 pb-20 md:pb-28 overflow-hidden text-black transition-colors duration-700 ease-out font-['Google_Sans','sans-serif']"
+      className="relative w-full min-h-screen py-14 md:py-20 pb-20 md:pb-28 overflow-hidden text-black font-['Google_Sans','sans-serif']"
     >
       {/* grain */}
       <div className="absolute inset-0 opacity-[0.04] mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
@@ -1028,7 +1033,7 @@ function ParallelArchive() {
 
       {/* toolbar — hidden on mobile to avoid crowding */}
       <div
-        className="hidden sm:flex fixed top-5 right-5 z-50 items-center gap-3 bg-black/85 text-white rounded-2xl px-4 py-3 backdrop-blur-xl transition-all duration-700 ease-out"
+        className="hidden sm:flex fixed bottom-6 right-6 z-50 items-center gap-3 bg-black/85 text-white rounded-2xl px-4 py-3 backdrop-blur-xl transition-all duration-700 ease-out"
         style={{
           opacity: isInView ? 1 : 0,
           transform: `scale(${isInView ? 1 : 0.85})`,
@@ -1134,5 +1139,91 @@ function ParallelArchive() {
         </div>
       </div>
     </section>
+  );
+}
+
+// 🔗 STAGGERED REVEAL LINKS
+function RevealLinks() {
+  return (
+    <section className="relative w-full bg-[#F8F7F5] dark:bg-black py-28 md:py-36 flex flex-col items-center justify-center gap-2 border-t border-black/5 dark:border-white/5 overflow-hidden">
+      {/* Editorial subtitle label */}
+      <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#0a0a0a]/40 dark:text-white/40 mb-8 font-sans">
+        Social Directory
+      </span>
+
+      <div className="flex flex-col items-center gap-5 md:gap-7">
+        <FlipLink href="https://github.com/ajaykumarreddy-k">GitHub</FlipLink>
+        <FlipLink href="https://www.linkedin.com/in/ajay-kumar-reddy-krishnareddy-gari-a4885b282/">LinkedIn</FlipLink>
+        <FlipLink href="mailto:ajaykumarreddykrishnareddygari@gmail.com">Email</FlipLink>
+        <FlipLink href="/Resume/KRISHNAREDDY GARI AJAY KUMAR REDDY_Doc.pdf">Resume</FlipLink>
+      </div>
+    </section>
+  );
+}
+
+const DURATION = 0.28;
+const STAGGER = 0.02;
+
+const FlipLink = ({ children, href }: { children: string; href: string }) => {
+  return (
+    <motion.a
+      initial="initial"
+      whileHover="hovered"
+      href={href}
+      target={href.startsWith("http") || href.endsWith(".pdf") ? "_blank" : undefined}
+      rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+      className="relative block overflow-hidden whitespace-nowrap text-[12vw] font-black uppercase tracking-tight sm:text-7xl md:text-8xl lg:text-9xl text-[#0a0a0a] dark:text-white hover:text-black/80 dark:hover:text-white/80 transition-colors"
+      style={{
+        lineHeight: 0.75,
+        fontFamily: "'PP Mori', sans-serif",
+      }}
+    >
+      <div>
+        {children.split("").map((l, i) => (
+          <motion.span
+            variants={{
+              initial: {
+                y: 0,
+              },
+              hovered: {
+                y: "-100%",
+              },
+            }}
+            transition={{
+              duration: DURATION,
+              ease: [0.76, 0, 0.24, 1], // Premium easeInOut transition
+              delay: STAGGER * i,
+            }}
+            className="inline-block"
+            key={i}
+          >
+            {l === " " ? "\u00A0" : l}
+          </motion.span>
+        ))}
+      </div>
+      <div className="absolute inset-0">
+        {children.split("").map((l, i) => (
+          <motion.span
+            variants={{
+              initial: {
+                y: "100%",
+              },
+              hovered: {
+                y: 0,
+              },
+            }}
+            transition={{
+              duration: DURATION,
+              ease: [0.76, 0, 0.24, 1], // Premium easeInOut transition
+              delay: STAGGER * i,
+            }}
+            className="inline-block"
+            key={i}
+          >
+            {l === " " ? "\u00A0" : l}
+          </motion.span>
+        ))}
+      </div>
+    </motion.a>
   );
 }
