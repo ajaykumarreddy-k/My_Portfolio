@@ -257,14 +257,99 @@ export default function App() {
             </div>
 
             {/* Huge, Elegant Editorial Biography */}
-            <h2
+            {/* Huge, Elegant Editorial Biography with Premium Word-by-Word Reveal */}
+            <motion.h2
               className="text-[3.8vw] sm:text-xl md:text-[2.5rem] font-normal leading-[1.55] sm:leading-[1.35] md:leading-[1.25] text-[#0a0a0a] tracking-[-0.01em] md:tracking-[-0.02em] max-w-4xl font-sans"
               style={{ fontFamily: "'Google Sans', sans-serif" }}
+              initial="hidden"
+              animate={isPreloaderActive ? "hidden" : "visible"}
+              variants={{
+                visible: {
+                  transition: {
+                    staggerChildren: 0.007
+                  }
+                }
+              }}
             >
-              Hello there! My name is <span className="font-bold">Ajay Kumar Reddy K.</span> <br />
-              I’m a Creative Technologist and AI Engineer, currently building advanced machine learning suites and intelligent triage interfaces. Previously, I built Medyphas AI and led autonomous supply-chain models. <br />
-              Beyond building AI pipelines, I enjoy tinkering with generative adversarial networks, exploring computer vision algorithms, and publishing open-source experiments.
-            </h2>
+              {[
+                { w: "Hello", bold: false },
+                { w: "there!", bold: false },
+                { w: "My", bold: false },
+                { w: "name", bold: false },
+                { w: "is", bold: false },
+                { w: "Ajay", bold: true },
+                { w: "Kumar", bold: true },
+                { w: "Reddy", bold: true },
+                { w: "K.", bold: true },
+                { w: "I’m", bold: false },
+                { w: "a", bold: false },
+                { w: "Creative", bold: false },
+                { w: "Technologist", bold: false },
+                { w: "and", bold: false },
+                { w: "AI", bold: false },
+                { w: "Engineer,", bold: false },
+                { w: "currently", bold: false },
+                { w: "building", bold: false },
+                { w: "advanced", bold: false },
+                { w: "machine", bold: false },
+                { w: "learning", bold: false },
+                { w: "suites", bold: false },
+                { w: "and", bold: false },
+                { w: "intelligent", bold: false },
+                { w: "triage", bold: false },
+                { w: "interfaces.", bold: false },
+                { w: "Previously,", bold: false },
+                { w: "I", bold: false },
+                { w: "built", bold: false },
+                { w: "Medyphas", bold: false },
+                { w: "AI", bold: false },
+                { w: "and", bold: false },
+                { w: "led", bold: false },
+                { w: "autonomous", bold: false },
+                { w: "supply-chain", bold: false },
+                { w: "models.", bold: false },
+                { w: "Beyond", bold: false },
+                { w: "building", bold: false },
+                { w: "AI", bold: false },
+                { w: "pipelines,", bold: false },
+                { w: "I", bold: false },
+                { w: "enjoy", bold: false },
+                { w: "tinkering", bold: false },
+                { w: "with", bold: false },
+                { w: "generative", bold: false },
+                { w: "adversarial", bold: false },
+                { w: "networks,", bold: false },
+                { w: "exploring", bold: false },
+                { w: "computer", bold: false },
+                { w: "vision", bold: false },
+                { w: "algorithms,", bold: false },
+                { w: "and", bold: false },
+                { w: "publishing", bold: false },
+                { w: "open-source", bold: false },
+                { w: "experiments.", bold: false }
+              ].map((item, idx) => (
+                <span
+                  key={idx}
+                  className="inline-block overflow-hidden mr-[0.23em] py-[0.05em] align-top"
+                >
+                  <motion.span
+                    className={`inline-block ${item.bold ? "font-bold text-[#0a0a0a]" : "text-[#0a0a0a]/85"}`}
+                    variants={{
+                      hidden: { y: "100%", opacity: 0.1 },
+                      visible: { y: 0, opacity: 1 }
+                    }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 24,
+                      mass: 0.8
+                    }}
+                  >
+                    {item.w}
+                  </motion.span>
+                </span>
+              ))}
+            </motion.h2>
 
             {/* Portrait + Stickers Row */}
             <div className="w-full flex flex-row items-end gap-5 md:gap-8">
