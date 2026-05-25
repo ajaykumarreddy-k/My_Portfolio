@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Github, Linkedin, Mail, Copy, Check, X, FileText, ArrowUpRight, Command } from 'lucide-react';
 import LorenzoInteractivePortrait from './components/LorenzoInteractivePortrait';
 import Preloader from './components/Preloader';
 import ScrollStack, { ScrollStackItem } from './components/ScrollStack';
+import { InteractiveEyes } from './components/InteractiveEyes';
+import { DynamicNav } from './components/DynamicNav';
 
 /**
  * CONFIGURATION: Hero background asset
@@ -15,13 +17,13 @@ const BACKGROUND_ASSET = "/sakura.gif";
  * Implements a wide layout (1400px) with overlapping rounded-top sections and inner depth.
  */
 const Section = ({ id, title, subtitle, children, className = "bg-[#F8F7F5]", isFirst = false }: any) => (
-  <section id={id} className={`relative z-10 w-full ${isFirst ? "mt-0" : "-mt-16"} rounded-t-[3rem] py-16 md:py-28 px-4 md:px-5 shadow-[0_-20px_40px_-20px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(0,0,0,0.04)] ${className}`}>
+  <section id={id} className={`relative w-full ${isFirst ? "mt-0" : "-mt-16"} rounded-t-[3rem] py-16 md:py-28 px-4 md:px-5 shadow-[0_-20px_40px_-20px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(0,0,0,0.04)] ${className}`}>
     <motion.div
       initial={{ opacity: 0, scale: 0.98 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-      className="max-w-[1400px] mx-auto"
+      className="max-w-[1400px] mx-auto relative z-30"
     >
       <div className="max-w-[1400px] mx-auto px-4 mb-10 md:mb-16">
         <h2 className="text-[11vw] sm:text-[8vw] md:text-[6vw] leading-none font-semibold tracking-tight">
@@ -119,7 +121,40 @@ const Folder = ({ color, items, label, onClick }: { color: string, items: any[],
   );
 };
 
+const LinePath = ({
+  scrollYProgress,
+}: {
+  scrollYProgress: any;
+}) => {
+  const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
+  return (
+    <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-[15]">
+      <svg
+        viewBox="0 0 1278 2319"
+        fill="none"
+        preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-full h-full opacity-12 sm:opacity-15"
+      >
+        <motion.path
+          d="M876.605 394.131C788.982 335.917 696.198 358.139 691.836 416.303C685.453 501.424 853.722 498.43 941.95 409.714C1016.1 335.156 1008.64 186.907 906.167 142.846C807.014 100.212 712.699 198.494 789.049 245.127C889.053 306.207 986.062 116.979 840.548 43.3233C743.932 -5.58141 678.027 57.1682 672.279 112.188C666.53 167.208 712.538 172.943 736.353 163.088C760.167 153.234 764.14 120.924 746.651 93.3868C717.461 47.4252 638.894 77.8642 601.018 116.979C568.164 150.908 557 201.079 576.467 246.924C593.342 286.664 630.24 310.55 671.68 302.614C756.114 286.446 729.747 206.546 681.86 186.442C630.54 164.898 492 209.318 495.026 287.644C496.837 334.494 518.402 366.466 582.455 367.287C680.013 368.538 771.538 299.456 898.634 292.434C1007.02 286.446 1192.67 309.384 1242.36 382.258C1266.99 418.39 1273.65 443.108 1247.75 474.477C1217.32 511.33 1149.4 511.259 1096.84 466.093C1044.29 420.928 1029.14 380.576 1033.97 324.172C1038.31 273.428 1069.55 228.986 1117.2 216.384C1152.2 207.128 1188.29 213.629 1194.45 245.127C1201.49 281.062 1132.22 280.104 1100.44 272.673C1065.32 264.464 1044.22 234.837 1032.77 201.413C1019.29 162.061 1029.71 131.126 1056.44 100.965C1086.19 67.4032 1143.96 54.5526 1175.78 86.1513C1207.02 117.17 1186.81 143.379 1156.22 166.691C1112.57 199.959 1052.57 186.238 999.784 155.164C957.312 130.164 899.171 63.7054 931.284 26.3214C952.068 2.12513 996.288 3.87363 1007.22 43.58C1018.15 83.2749 1003.56 122.644 975.969 163.376C948.377 204.107 907.272 255.122 913.558 321.045C919.727 385.734 990.968 497.068 1063.84 503.35C1111.46 507.456 1166.79 511.984 1175.68 464.527C1191.52 379.956 1101.26 334.985 1030.29 377.017C971.109 412.064 956.297 483.647 953.797 561.655C947.587 755.413 1197.56 941.828 936.039 1140.66C745.771 1285.32 321.926 950.737 134.536 1202.19C-6.68295 1391.68 -53.4837 1655.38 131.935 1760.5C478.381 1956.91 1124.19 1515 1201.28 1997.83C1273.66 2451.23 100.805 1864.7 303.794 2668.89"
+          stroke="#000000"
+          strokeWidth="4"
+          strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
+          style={{
+            pathLength,
+            strokeDashoffset: useTransform(pathLength, (value) => 1 - value),
+          }}
+        />
+      </svg>
+    </div>
+  );
+};
+
 export default function App() {
+  const { scrollYProgress } = useScroll();
   const isVideo = BACKGROUND_ASSET.toLowerCase().endsWith('.mp4');
 
   const [isPreloaderActive, setIsPreloaderActive] = useState(true);
@@ -148,7 +183,16 @@ export default function App() {
 
 
   return (
-    <div className="relative min-h-screen w-full bg-background font-sans selection:bg-foreground/10 selection:text-foreground">
+    <div className="relative min-h-screen w-full bg-background font-sans selection:bg-foreground/10 selection:text-foreground overflow-x-hidden">
+
+      {/* 👀 Floating Cursor-Tracking Eyeballs */}
+      {!isPreloaderActive && <InteractiveEyes />}
+
+      {/* 🧭 Morphing Dynamic Sticky Nav Bar */}
+      {!isPreloaderActive && <DynamicNav />}
+
+      {/* 〰️ Floating Scroll-Progress Stroke Pattern */}
+      <LinePath scrollYProgress={scrollYProgress} />
 
       {/* 🌀 High-Fidelity Greeting Preloader */}
       <Preloader active={isPreloaderActive} setActive={setIsPreloaderActive} />
@@ -455,7 +499,7 @@ export default function App() {
       </section>
 
       {/* 📦 PORTFOLIO SECTION (Parallel Archive Layout) */}
-      <div id="portfolio" className="relative z-10 -mt-16 rounded-t-[3rem] overflow-hidden">
+      <div id="portfolio" className="relative z-30 -mt-16 rounded-t-[3rem] overflow-hidden">
         <ParallelArchive />
       </div>
 
