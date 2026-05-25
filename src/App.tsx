@@ -352,10 +352,10 @@ export default function App() {
             </motion.h2>
 
             {/* Portrait + Stickers Row */}
-            <div className="w-full flex flex-row items-end gap-5 md:gap-8">
+            <div className="w-full flex flex-row items-start gap-5 md:gap-8">
 
-              {/* Rounded Portrait Image — bigger */}
-              <div className="flex-shrink-0 w-[60%] sm:w-[65%] md:w-auto md:max-w-[600px] rounded-[1.5rem] md:rounded-[2rem] overflow-hidden border border-black/[0.04] aspect-[4/5] md:aspect-[4/3] relative group shadow-md bg-stone-100">
+              {/* Rounded Portrait Image — optimized sizing */}
+              <div className="flex-shrink-0 w-[50%] sm:w-[55%] md:w-[255px] lg:w-[290px] xl:w-[320px] rounded-[1.5rem] md:rounded-[2rem] overflow-hidden border border-black/[0.04] aspect-[4/5] md:aspect-[4/3] relative group shadow-md bg-stone-100">
                 <img
                   src="/footerbackground.jpeg"
                   onError={(e) => {
@@ -367,7 +367,7 @@ export default function App() {
               </div>
 
               {/* Sticker Wall — bigger stickers */}
-              <div className="flex-1 flex flex-wrap items-end justify-start gap-4 md:gap-7 pb-3 md:pb-6">
+              <div className="flex-1 flex flex-wrap items-start justify-start gap-4 md:gap-7 pb-3 md:pb-6">
 
                 {/* Linux Tux */}
                 <img
@@ -393,6 +393,15 @@ export default function App() {
                   alt="GitHub sticker"
                   className="w-12 h-12 sm:w-24 sm:h-24 md:w-32 md:h-32 object-contain drop-shadow-lg hover:scale-110 hover:-rotate-2 transition-all duration-300 cursor-pointer select-none"
                   style={{ transform: "rotate(-4deg)" }}
+                  draggable={false}
+                />
+
+                {/* Laptop Sticker */}
+                <img
+                  src="/Stickers/lap%20pre.png"
+                  alt="Laptop sticker"
+                  className="w-12 h-12 sm:w-24 sm:h-24 md:w-32 md:h-32 object-contain drop-shadow-lg hover:scale-110 hover:-rotate-6 transition-all duration-300 cursor-pointer select-none"
+                  style={{ transform: "rotate(-6deg)" }}
                   draggable={false}
                 />
 
