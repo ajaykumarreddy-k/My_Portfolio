@@ -66,9 +66,9 @@ const Folder = ({ color, items, label, onClick }: { color: string, items: any[],
           className="absolute inset-0 rounded-[1.5rem] shadow-[0_5px_20px_rgba(0,0,0,0.08)] border-b-[5px] border-black/20"
           style={{ backgroundColor: color }}
         >
-          <div 
-            className="absolute -top-3.5 left-5 w-14 h-6 rounded-t-2xl shadow-[0_-3px_8px_rgba(0,0,0,0.02)]" 
-            style={{ backgroundColor: color }} 
+          <div
+            className="absolute -top-3.5 left-5 w-14 h-6 rounded-t-2xl shadow-[0_-3px_8px_rgba(0,0,0,0.02)]"
+            style={{ backgroundColor: color }}
           />
         </div>
 
@@ -106,9 +106,9 @@ const Folder = ({ color, items, label, onClick }: { color: string, items: any[],
           </div>
 
           {/* Tactile File Archive Label Badge */}
-          <div 
+          <div
             className="relative z-10 rounded-lg px-2 py-1.5 text-[9px] uppercase tracking-[0.25em] font-extrabold text-center select-none border border-black/5 bg-white/20 backdrop-blur-md shadow-sm"
-            style={{ 
+            style={{
               color: color === '#E9FF61' || color === '#FFFFFF' ? '#000000' : '#FFFFFF',
               fontFamily: "'Google Sans', sans-serif"
             }}
@@ -129,7 +129,7 @@ const LinePath = ({
   const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-[15]">
+    <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-[5]">
       <svg
         viewBox="0 0 1278 2319"
         fill="none"
@@ -191,9 +191,6 @@ export default function App() {
       {/* 🧭 Morphing Dynamic Sticky Nav Bar */}
       {!isPreloaderActive && <DynamicNav />}
 
-      {/* 〰️ Floating Scroll-Progress Stroke Pattern */}
-      <LinePath scrollYProgress={scrollYProgress} />
-
       {/* 🌀 High-Fidelity Greeting Preloader */}
       <Preloader active={isPreloaderActive} setActive={setIsPreloaderActive} />
 
@@ -211,14 +208,18 @@ export default function App() {
         </motion.button>
       )}
 
-      {/* 🚀 GIMAEV-INSPIRED EDITORIAL HOME PAGE & TITLE SCREEN */}
-      <section className="relative min-h-screen bg-[#FDFCF7] text-[#0a0a0a] font-mori flex flex-col justify-start px-5 pt-20 pb-5 md:px-16 md:py-8 overflow-hidden">
+      {/* 〰️ Wrapper Container for line path ending at Me section */}
+      <div className="relative w-full">
+        <LinePath scrollYProgress={scrollYProgress} />
+
+        {/* 🚀 GIMAEV-INSPIRED EDITORIAL HOME PAGE & TITLE SCREEN */}
+        <section className="relative min-h-screen bg-[#FDFCF7] text-[#0a0a0a] font-mori flex flex-col justify-start px-5 pt-20 pb-5 md:px-16 md:py-8 overflow-hidden">
 
         {/* Subtle cinematic physical grain texture overlay */}
         <div className="absolute inset-0 bg-grain pointer-events-none z-10 opacity-[0.025]" />
 
         {/* Top Header Row */}
-        <div className="w-full flex flex-col md:flex-row md:items-start justify-between gap-8 z-20">
+        <div className="relative w-full flex flex-col md:flex-row md:items-start justify-between gap-8 z-20">
 
           {/* Logo & Vol metadata (Left Column top) */}
           <div className="flex flex-col gap-2">
@@ -237,7 +238,7 @@ export default function App() {
         </div>
 
         {/* Core 2-Column Content Layout */}
-        <div className="w-full flex flex-col md:flex-row gap-6 md:gap-16 items-start z-20 mt-6 md:mt-12 transition-transform duration-500">
+        <div className="relative w-full flex flex-col md:flex-row gap-6 md:gap-16 items-start z-20 mt-6 md:mt-12 transition-transform duration-500">
 
           {/* Left Column (Quiet taglines on desktop) */}
           <div className="w-full md:w-[25%] hidden md:flex flex-col justify-between h-[20vh]">
@@ -249,7 +250,7 @@ export default function App() {
           </div>
 
           {/* Right Column (The primary content - shifted upwards to fit beautifully in the upper viewport) */}
-          <div className="w-full md:w-[70%] max-w-4xl flex flex-col items-start gap-3 md:gap-6 md:-translate-y-[7vh] lg:-translate-y-[8vh]">
+          <div className="w-full md:w-[70%] max-w-4xl flex flex-col items-start gap-3 md:gap-6 md:-translate-y-[5vh] lg:-translate-y-[6vh]">
 
             {/* ABOUT ME label */}
             <div className="text-[10px] uppercase tracking-[0.3em] text-[#0a0a0a]/40 font-black">
@@ -751,6 +752,114 @@ export default function App() {
           </div>
         </div>
       </Section>
+    </div>
+
+      {/* 📖 AEO: FAQ + BODY TEXT + CONTEXTUAL LINKS SECTION */}
+      <section
+        id="about-faq"
+        className="relative w-full bg-[#F8F7F5] z-30 -mt-16 rounded-t-[3rem] py-16 md:py-28 px-4 md:px-5 shadow-[0_-20px_40px_-20px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(0,0,0,0.04)]"
+      >
+        <div className="max-w-[1400px] mx-auto px-4 md:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+            {/* Intro body copy — rich quotable text for AI crawlers */}
+            <div className="w-full">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-[#0a0a0a]/40 font-black mb-6">About the Work</p>
+              <p className="text-base md:text-lg text-[#0a0a0a]/75 leading-relaxed mb-5" style={{ fontFamily: "'Google Sans', sans-serif" }}>
+                I'm <strong>Ajay Kumar Reddy KrishnareddyGari</strong>, a Creative Technologist and AI Engineer based in India with over three years of professional experience
+                building intelligent systems, machine learning pipelines, and high-performance web applications. My work sits at the intersection of
+                deep learning research and product engineering — from training generative adversarial networks to shipping production-grade React interfaces.
+              </p>
+              <p className="text-base md:text-lg text-[#0a0a0a]/75 leading-relaxed mb-5" style={{ fontFamily: "'Google Sans', sans-serif" }}>
+                The projects in my{" "}
+                <a href="#projects" className="underline underline-offset-4 decoration-black/30 hover:decoration-black transition-all font-medium text-[#0a0a0a]">selected works</a>
+                {" "}span computer vision, natural language processing, healthcare AI, and autonomous supply chain systems.
+                Each project is built to solve a real problem, with a bias toward clean architecture and exceptional user experience.
+                You can explore the full{" "}
+                <a href="#portfolio" className="underline underline-offset-4 decoration-black/30 hover:decoration-black transition-all font-medium text-[#0a0a0a]">project archive</a>
+                {" "}for a complete view of my engineering history.
+              </p>
+              <p className="text-base md:text-lg text-[#0a0a0a]/75 leading-relaxed mb-5" style={{ fontFamily: "'Google Sans', sans-serif" }}>
+                Beyond building AI pipelines, I invest heavily in developer tooling and workflow automation — a curated set of which is available in the{" "}
+                <a href="#docs" className="underline underline-offset-4 decoration-black/30 hover:decoration-black transition-all font-medium text-[#0a0a0a]">Developer Toolkit</a>.
+                I'm a strong advocate for open-source development; most of my work lives publicly on{" "}
+                <a href="https://github.com/ajaykumarreddy-k" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 decoration-black/30 hover:decoration-black transition-all font-medium text-[#0a0a0a]">GitHub</a>.
+                I'm also professionally connected on{" "}
+                <a href="https://www.linkedin.com/in/ajay-kumar-reddy-krishnareddy-gari-a4885b282/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 decoration-black/30 hover:decoration-black transition-all font-medium text-[#0a0a0a]">LinkedIn</a>.
+              </p>
+              <p className="text-base md:text-lg text-[#0a0a0a]/75 leading-relaxed" style={{ fontFamily: "'Google Sans', sans-serif" }}>
+                When not writing code, I explore generative adversarial network architectures, contribute to open-source computer vision tooling, and publish
+                experimental interfaces. If you're interested in collaborating or have an engineering challenge worth solving,{" "}
+                <a href="#reach-me" className="underline underline-offset-4 decoration-black/30 hover:decoration-black transition-all font-medium text-[#0a0a0a]">get in touch</a>.
+              </p>
+            </div>
+
+            {/* FAQ Section */}
+            <div className="w-full">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-[#0a0a0a]/40 font-black mb-6">Frequently Asked</p>
+
+              <div className="space-y-8">
+
+                <div className="border-t border-black/[0.07] pt-6">
+                  <h3 className="text-lg font-semibold text-[#0a0a0a] mb-2 leading-snug" style={{ fontFamily: "'Google Sans', sans-serif" }}>
+                    What technologies does Ajay Kumar Reddy work with?
+                  </h3>
+                  <p className="text-base text-[#0a0a0a]/70 leading-relaxed" style={{ fontFamily: "'Google Sans', sans-serif" }}>
+                    I work across the full stack, with a primary focus on <strong>Python</strong>, <strong>PyTorch</strong>, and <strong>TensorFlow</strong> for machine learning,
+                    and <strong>React</strong>, <strong>TypeScript</strong>, and <strong>Node.js</strong> for web development. For backend APIs I use <strong>FastAPI</strong> and
+                    <strong> PostgreSQL</strong>. On mobile, I've shipped Android apps with <strong>Kotlin</strong>. I also use Figma for design and have deep experience
+                    with the{" "}
+                    <a href="https://pytorch.org" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 decoration-black/30 hover:decoration-black transition-all">PyTorch ecosystem</a>.
+                  </p>
+                </div>
+
+                <div className="border-t border-black/[0.07] pt-6">
+                  <h3 className="text-lg font-semibold text-[#0a0a0a] mb-2 leading-snug" style={{ fontFamily: "'Google Sans', sans-serif" }}>
+                    What is Ajay's most notable AI project?
+                  </h3>
+                  <p className="text-base text-[#0a0a0a]/70 leading-relaxed" style={{ fontFamily: "'Google Sans', sans-serif" }}>
+                    The <strong>AI Face Transformation Suite</strong> is a GAN-based system enabling controllable emotion editing, identity morphing, and
+                    high-fidelity sketch generation from facial images. It was built using PyTorch and draws from research in{" "}
+                    <a href="https://arxiv.org/abs/1406.2661" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 decoration-black/30 hover:decoration-black transition-all">Generative Adversarial Networks (Goodfellow et al., 2014)</a>.
+                    See the{" "}
+                    <a href="#projects" className="underline underline-offset-4 decoration-black/30 hover:decoration-black transition-all">selected works section</a>
+                    {" "}for more details.
+                  </p>
+                </div>
+
+                <div className="border-t border-black/[0.07] pt-6">
+                  <h3 className="text-lg font-semibold text-[#0a0a0a] mb-2 leading-snug" style={{ fontFamily: "'Google Sans', sans-serif" }}>
+                    Is Ajay Kumar Reddy available for freelance or full-time roles?
+                  </h3>
+                  <p className="text-base text-[#0a0a0a]/70 leading-relaxed" style={{ fontFamily: "'Google Sans', sans-serif" }}>
+                    Yes. I'm open to both freelance project engagements and full-time engineering roles, particularly those involving AI systems, computer vision,
+                    or full-stack product development. You can{" "}
+                    <a href="#reach-me" className="underline underline-offset-4 decoration-black/30 hover:decoration-black transition-all">reach out via the contact section</a>
+                    {" "}or connect directly on{" "}
+                    <a href="https://www.linkedin.com/in/ajay-kumar-reddy-krishnareddy-gari-a4885b282/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 decoration-black/30 hover:decoration-black transition-all">LinkedIn</a>.
+                  </p>
+                </div>
+
+                <div className="border-t border-black/[0.07] pt-6">
+                  <h3 className="text-lg font-semibold text-[#0a0a0a] mb-2 leading-snug" style={{ fontFamily: "'Google Sans', sans-serif" }}>
+                    Where can I view Ajay's open-source code?
+                  </h3>
+                  <p className="text-base text-[#0a0a0a]/70 leading-relaxed" style={{ fontFamily: "'Google Sans', sans-serif" }}>
+                    All public projects and experiments are available on{" "}
+                    <a href="https://github.com/ajaykumarreddy-k" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 decoration-black/30 hover:decoration-black transition-all font-medium">github.com/ajaykumarreddy-k</a>.
+                    The repository covers everything from GAN training scripts to full-stack web apps, Android applications, and civic technology tools.
+                    You can also browse the curated{" "}
+                    <a href="#portfolio" className="underline underline-offset-4 decoration-black/30 hover:decoration-black transition-all">archive section</a>{" "}
+                    on this site for annotated summaries.
+                  </p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
 
       {/* 🔗 STAGGERED FLIP REVEAL SOCIAL LINKS */}
       <RevealLinks />
@@ -814,9 +923,9 @@ export default function App() {
 
           {/* Branding */}
           <div className="mt-24 border-t border-white/10 pt-10">
-            <h1 className="text-[12vw] leading-none font-bold tracking-tight">
+            <span className="text-[12vw] leading-none font-bold tracking-tight block">
               AKR
-            </h1>
+            </span>
             <p
               className="text-white/50 text-sm md:text-lg uppercase tracking-widest font-medium mt-2 md:mt-4"
               style={{ fontFamily: "'Inter', sans-serif" }}
@@ -1156,9 +1265,9 @@ function ParallelArchive() {
                 }`}
             >
               {/* title */}
-              <h1 className="text-[32px] sm:text-[44px] md:text-[78px] leading-none tracking-[-0.06em] md:tracking-[-0.08em] font-medium break-words">
+              <p className="text-[32px] sm:text-[44px] md:text-[78px] leading-none tracking-[-0.06em] md:tracking-[-0.08em] font-medium break-words">
                 {project.title}
-              </h1>
+              </p>
 
               {/* meta */}
               <div className="flex items-center gap-3 mt-2">

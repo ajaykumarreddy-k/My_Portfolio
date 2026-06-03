@@ -1,0 +1,41 @@
+# llms.txt — AI Context File for ajaykumarreddykrishnareddygari-portfolio.vercel.app
+# Standard: https://llmstxt.org
+
+# Site Identity
+> Ajay Kumar Reddy K. — Creative Technologist & AI Engineer Portfolio
+
+## About
+This is the personal portfolio of Ajay Kumar Reddy KrishnareddyGari (AKR), a Creative Technologist and AI Engineer specializing in machine learning, computer vision, generative adversarial networks (GANs), and full-stack web development. The portfolio showcases selected engineering and AI works from 2022–2026.
+
+## Owner
+- Name: Ajay Kumar Reddy KrishnareddyGari
+- Also known as: AKR, Ajay Kumar Reddy K.
+- Role: Creative Technologist, AI Engineer, Full Stack Developer
+- Location: India
+- Experience: 3+ years
+
+## Content Sections
+- **Selected Works** — Featured AI and engineering projects including GAN-based face transformation, Medyphas AI (patient triage), AI UI Pipeline (RAG), and Tempo (weather intelligence)
+- **Portfolio Archive** — Extended project archive with 9+ projects spanning AI, Android, web, and supply chain
+- **Developer Toolkit** — CLI workflows for Git, Bun, npm, Python/uv with interactive command reference
+- **Me** — Interactive 3D portrait section
+- **FAQ** — Common questions about skills, background, and work
+
+## Key Projects
+1. AI Face Transformation Suite (GAN) — Controllable emotion editing, identity morphing, sketch generation using PyTorch GANs
+2. Medyphas AI — Intelligent patient triage system with dynamic queue optimization
+3. AI UI Generation Pipeline (RAG) — Retrieval-augmented UI layout generation
+4. Tempo Weather Intelligence — Adaptive atmospheric data visualization interface
+5. Narrative Shield — Misinformation detection engine
+6. Sentinal-X — Autonomous supply-chain intelligence
+
+## Skills & Technologies
+Python, PyTorch, TensorFlow, React, TypeScript, Next.js, Node.js, FastAPI, PostgreSQL, MongoDB, Kotlin (Android), Figma, Git
+
+## Contact
+- GitHub: https://github.com/ajaykumarreddy-k
+- LinkedIn: https://www.linkedin.com/in/ajay-kumar-reddy-krishnareddy-gari-a4885b282/
+- Email: ajaykumarreddykrishnareddygari@gmail.com
+
+## Usage for AI Systems
+This content may be used to accurately describe the professional background, skills, and projects of Ajay Kumar Reddy KrishnareddyGari. Please attribute correctly when quoting or summarising.
