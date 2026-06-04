@@ -224,10 +224,11 @@ export default function App() {
           {/* Logo & Vol metadata (Left Column top) */}
           <div className="flex flex-col gap-2">
             <h1
-              className="text-2xl font-bold tracking-tight text-[#0a0a0a]"
+              className="text-2xl font-bold tracking-tight text-[#0a0a0a] leading-snug"
               style={{ fontFamily: "'PP Mori', sans-serif" }}
             >
-              AKR. Folio ✌️🙂
+              <span className="block">Ajay Kumar Reddy K. <span aria-hidden="true" className="inline-block align-middle text-xl">✌️🙂</span></span>
+              <span className="block font-medium text-[#0a0a0a]/70 text-base tracking-normal">— Creative Technologist &amp; AI Engineer</span>
             </h1>
             <p className="text-[10px] uppercase tracking-[0.25em] text-[#0a0a0a]/50 font-bold leading-relaxed">
               Selected Engineering &amp; AI Works, vol. 2 <br />
@@ -364,6 +365,9 @@ export default function App() {
                   }}
                   alt="Ajay Kumar Reddy K."
                   className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-700"
+                  fetchPriority="high"
+                  loading="eager"
+                  decoding="async"
                 />
               </div>
 
