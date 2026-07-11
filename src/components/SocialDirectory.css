@@ -51,7 +51,6 @@
   background-color: var(--imaneo-green);
   top: 4cqw;
   left: 3cqw;
-  transform: rotate(-15deg);
   z-index: 2;
 }
 
@@ -59,7 +58,6 @@
   background-color: var(--imaneo-yellow);
   top: 12cqw;
   left: 17cqw;
-  transform: rotate(5deg);
   z-index: 4;
 }
 
@@ -67,7 +65,6 @@
   background-color: var(--imaneo-teal);
   top: 7cqw;
   left: 36.5cqw;
-  transform: rotate(-3deg);
   z-index: 1;
   align-items: flex-end;
 }
@@ -76,7 +73,6 @@
   background-color: var(--imaneo-blue);
   top: 18cqw;
   left: 53cqw;
-  transform: rotate(3deg);
   z-index: 5;
   padding: 1.5cqw 1cqw;
 }
@@ -85,7 +81,6 @@
   background-color: var(--imaneo-green);
   top: 3cqw;
   left: 58cqw;
-  transform: rotate(12deg);
   z-index: 2;
 }
 
@@ -93,7 +88,6 @@
   background-color: var(--imaneo-yellow);
   top: 15cqw;
   left: 73cqw;
-  transform: rotate(-4deg);
   z-index: 3;
 }
 

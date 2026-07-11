@@ -490,9 +490,17 @@ export function TextFlippingBoardSection() {
           Quick Thoughts
         </span>
       </div>
-      <div className="w-full max-w-[1000px] px-4 mx-auto">
+      <motion.div 
+        className="w-full max-w-[1000px] px-4 mx-auto"
+        initial={{ opacity: 0, y: 80 }}
+        animate={{ 
+          opacity: isVisible ? 1 : 0, 
+          y: isVisible ? 0 : 80 
+        }}
+        transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+      >
         <TextFlippingBoard text={MESSAGES[msgIdx]} className="bg-[#111] dark:bg-[#111]" />
-      </div>
+      </motion.div>
     </section>
   );
 }
