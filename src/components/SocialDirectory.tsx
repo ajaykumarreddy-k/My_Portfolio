@@ -50,7 +50,7 @@ export default function SocialDirectory() {
             >
               <h2>EMAIL</h2>
               <p>CONNECT</p>
-              <img src="/bg removed/mail-logo.png" alt="Email" className="absolute bottom-3 right-3 w-[60%] object-contain drop-shadow-xl opacity-90 group-hover:opacity-100 transition-opacity" />
+              <img src="/bg removed/mail-logo.png" alt="Email" className="absolute bottom-3 right-3 w-[60%] object-contain drop-shadow-md opacity-90 group-hover:opacity-100 transition-opacity" />
             </motion.a>
 
             {/* Card 2: GitHub */}
@@ -67,7 +67,7 @@ export default function SocialDirectory() {
               custom={5}
             >
               <div className="card-image-container">
-                <img src="/bg removed/git-logo.png" alt="GitHub" className="w-[85%] h-[85%] object-contain drop-shadow-2xl p-2 opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all" />
+                <img src="/bg removed/git-logo.png" alt="GitHub" className="w-[85%] h-[85%] object-contain drop-shadow-lg p-2 opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all" />
               </div>
               <div className="bottom-right-text">
                 <p>DEVELOPER</p>
@@ -141,7 +141,7 @@ export default function SocialDirectory() {
             >
               <h2>LINKEDIN</h2>
               <p>NETWORK</p>
-              <img src="/bg removed/linked-in-logo.png" alt="LinkedIn" className="absolute bottom-4 right-4 w-[50%] object-contain drop-shadow-xl opacity-90 group-hover:opacity-100 transition-opacity" />
+              <img src="/bg removed/linked-in-logo.png" alt="LinkedIn" className="absolute bottom-4 right-4 w-[50%] object-contain drop-shadow-md opacity-90 group-hover:opacity-100 transition-opacity" />
             </motion.a>
 
             {/* Card 6: Resume */}
@@ -158,7 +158,7 @@ export default function SocialDirectory() {
               custom={-4}
             >
               <div className="card-image-container">
-                <img src="/bg removed/resume logo .png" alt="Resume" className="w-[85%] h-[85%] object-contain drop-shadow-2xl p-2 opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all" />
+                <img src="/bg removed/resume logo .png" alt="Resume" className="w-[85%] h-[85%] object-contain drop-shadow-lg p-2 opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all" />
               </div>
               <div className="bottom-right-text">
                 <p>EXPERIENCE</p>

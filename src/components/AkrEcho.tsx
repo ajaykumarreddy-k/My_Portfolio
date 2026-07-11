@@ -83,25 +83,25 @@ export default function AkrEcho() {
                 </motion.h2>
                 
                 {/* Visual Banner Placeholder */}
-                <div className="w-full mt-12 md:mt-20 mb-8 flex items-center justify-center">
+                <div className="w-full mt-12 md:mt-20 mb-8 flex flex-wrap items-center justify-center">
                     <motion.div 
                         initial={{ opacity: 0, y: 30 }}
                         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                         transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                        className="flex items-center justify-center text-[18vw] md:text-[14vw] lg:text-[12rem] font-medium tracking-tighter text-[#111] leading-none select-none"
+                        className="flex flex-row items-center justify-center text-[10vw] sm:text-[14vw] md:text-[14vw] lg:text-[12rem] font-medium tracking-tighter text-[#111] leading-none select-none"
                         style={{ willChange: 'transform, opacity' }}
                     >
-                        <span className="mr-2 md:mr-4">Visit(</span>
+                        <span className="mr-1 sm:mr-2 md:mr-4">Visit(</span>
                         
                         {/* Image 1: Earth Placeholder */}
                         <motion.div 
                             variants={popVariants}
                             initial="hidden"
                             animate={isInView ? "visible" : "hidden"}
-                            className="w-[22vw] h-[22vw] md:w-[16vw] md:h-[16vw] lg:w-[200px] lg:h-[200px] rounded-full bg-zinc-300 overflow-hidden shadow-inner flex-shrink-0 relative border border-black/10 flex items-center justify-center"
+                            className="w-[12vw] h-[12vw] sm:w-[16vw] sm:h-[16vw] md:w-[16vw] md:h-[16vw] lg:w-[200px] lg:h-[200px] rounded-full bg-zinc-300 overflow-hidden shadow-inner flex-shrink-0 relative border border-black/10 flex items-center justify-center"
                             style={{ willChange: 'transform, opacity' }}
                         >
-                            <img src="/akr-echo/image1.jpeg" alt="Earth" className="absolute inset-0 w-full h-full object-cover grayscale mix-blend-multiply" />
+                            <img src="/akr-echo/image1.jpeg" alt="Earth" className="absolute inset-0 w-full h-full object-cover opacity-90" />
                         </motion.div>
                         
                         {/* Image 2: Thinker Placeholder */}
@@ -110,20 +110,20 @@ export default function AkrEcho() {
                             initial="hidden"
                             animate={isInView ? "visible" : "hidden"}
                             transition={{ delay: 0.45 }}
-                            className="w-[22vw] h-[22vw] md:w-[16vw] md:h-[16vw] lg:w-[200px] lg:h-[200px] rounded-full bg-blue-200/80 overflow-hidden shadow-inner flex-shrink-0 relative -ml-[8vw] md:-ml-[5vw] lg:-ml-[70px] mix-blend-multiply border border-black/10 flex items-center justify-center"
+                            className="w-[12vw] h-[12vw] sm:w-[16vw] sm:h-[16vw] md:w-[16vw] md:h-[16vw] lg:w-[200px] lg:h-[200px] rounded-full bg-blue-200/80 overflow-hidden shadow-inner flex-shrink-0 relative -ml-[4vw] sm:-ml-[5vw] md:-ml-[5vw] lg:-ml-[70px] border border-black/10 flex items-center justify-center"
                             style={{ willChange: 'transform, opacity' }}
                         >
-                            <img src="/akr-echo/image2.png" alt="Thinker" className="absolute inset-0 w-full h-full object-cover mix-blend-multiply" />
+                            <img src="/akr-echo/image2.png" alt="Thinker" className="absolute inset-0 w-full h-full object-cover opacity-90" />
                         </motion.div>
                         
-                        <span className="ml-2 md:ml-4">)</span>
+                        <span className="ml-1 sm:ml-2 md:ml-4">)</span>
                         
                         {/* Down Arrow SVG */}
                         <motion.svg 
                             initial={{ opacity: 0, y: -20 }}
                             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-                            transition={{ type: "spring", stiffness: 200, damping: 10, delay: 0.8 }}
-                            className="w-[14vw] h-[14vw] md:w-[10vw] md:h-[10vw] lg:w-[130px] lg:h-[130px] ml-4 md:ml-8" 
+                            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
+                            className="w-[8vw] h-[8vw] sm:w-[10vw] sm:h-[10vw] md:w-[10vw] md:h-[10vw] lg:w-[130px] lg:h-[130px] ml-2 sm:ml-4 md:ml-8" 
                             viewBox="0 0 24 24" 
                             fill="none"
                         >
@@ -138,7 +138,7 @@ export default function AkrEcho() {
                 variants={containerVariants}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
-                className="w-full h-[500px] md:h-[75vh] flex gap-1 p-1 md:gap-2 md:p-2 bg-white overflow-x-auto snap-x snap-mandatory"
+                className="w-full h-[500px] md:h-[75vh] flex gap-1 p-1 md:gap-2 md:p-2 bg-white overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
             >
                 {panels.map((panel, idx) => (
                     <motion.a 
