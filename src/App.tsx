@@ -6,6 +6,9 @@ import Preloader from './components/Preloader';
 import ScrollStack, { ScrollStackItem } from './components/ScrollStack';
 import { InteractiveEyes } from './components/InteractiveEyes';
 import { DynamicNav } from './components/DynamicNav';
+import SocialDirectory from './components/SocialDirectory';
+import { TextFlippingBoardSection } from './components/TextFlippingBoard';
+import AkrEcho from './components/AkrEcho';
 
 /**
  * CONFIGURATION: Hero background asset
@@ -183,7 +186,7 @@ export default function App() {
 
 
   return (
-    <div className="relative min-h-screen w-full bg-background font-sans selection:bg-foreground/10 selection:text-foreground overflow-x-hidden">
+    <div className="relative min-h-screen w-full bg-background font-sans selection:bg-foreground/10 selection:text-foreground">
 
       {/* 👀 Floating Cursor-Tracking Eyeballs - hidden on mobile to avoid overlapping replay button */}
       {!isPreloaderActive && <div className="hidden md:block"><InteractiveEyes /></div>}
@@ -585,6 +588,11 @@ export default function App() {
         </div>
       </Section>
 
+      {/* 🚀 AKR ECHO HORIZONTAL GALLERY */}
+      <div className="relative z-30 -mt-16 rounded-t-[3rem] bg-[#F8F7F5] pt-20">
+        <AkrEcho />
+      </div>
+
       {/* 🌑 DARK EMPHASIS SECTION */}
       <section className="relative z-10 -mt-16 rounded-t-[3rem] py-16 md:py-32 bg-[#0E0E0E] text-white overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-4">
@@ -592,7 +600,7 @@ export default function App() {
             Archive Identity
           </p>
           <h2 className="text-[8vw] md:text-[6vw] leading-none font-semibold tracking-tight break-words">
-            AKR - Projects that i worked on.
+            AKR - More works.
           </h2>
         </div>
       </section>
@@ -758,6 +766,7 @@ export default function App() {
       </Section>
     </div>
 
+
       {/* 📖 AEO: FAQ + BODY TEXT + CONTEXTUAL LINKS SECTION */}
       <section
         id="about-faq"
@@ -866,7 +875,8 @@ export default function App() {
       </section>
 
       {/* 🔗 STAGGERED FLIP REVEAL SOCIAL LINKS */}
-      <RevealLinks />
+      <SocialDirectory />
+      <TextFlippingBoardSection />
 
       {/* 🎬 CINEMATIC FOOTER */}
       <footer className="relative w-full bg-black text-white overflow-hidden" id="reach-me">
@@ -1346,91 +1356,5 @@ function ParallelArchive() {
         </div>
       </div>
     </section>
-  );
-}
-
-// 🔗 STAGGERED REVEAL LINKS
-function RevealLinks() {
-  return (
-    <section className="relative w-full bg-[#F8F7F5] dark:bg-black py-28 md:py-36 flex flex-col items-center justify-center gap-2 border-t border-black/5 dark:border-white/5 overflow-hidden">
-      {/* Editorial subtitle label */}
-      <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#0a0a0a]/40 dark:text-white/40 mb-8 font-sans">
-        Social Directory
-      </span>
-
-      <div className="flex flex-col items-center gap-5 md:gap-7">
-        <FlipLink href="https://github.com/ajaykumarreddy-k">GitHub</FlipLink>
-        <FlipLink href="https://www.linkedin.com/in/ajay-kumar-reddy-krishnareddy-gari-a4885b282/">LinkedIn</FlipLink>
-        <FlipLink href="mailto:ajaykumarreddykrishnareddygari@gmail.com">Email</FlipLink>
-        <FlipLink href="/Resume/KRISHNAREDDY GARI AJAY KUMAR REDDY_Doc.pdf">Resume</FlipLink>
-      </div>
-    </section>
-  );
-}
-
-const DURATION = 0.28;
-const STAGGER = 0.02;
-
-const FlipLink = ({ children, href }: { children: string; href: string }) => {
-  return (
-    <motion.a
-      initial="initial"
-      whileHover="hovered"
-      href={href}
-      target={href.startsWith("http") || href.endsWith(".pdf") ? "_blank" : undefined}
-      rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-      className="relative block overflow-hidden whitespace-nowrap text-[12vw] font-black uppercase tracking-tight sm:text-7xl md:text-8xl lg:text-9xl text-[#0a0a0a] dark:text-white hover:text-black/80 dark:hover:text-white/80 transition-colors"
-      style={{
-        lineHeight: 0.75,
-        fontFamily: "'PP Mori', sans-serif",
-      }}
-    >
-      <div>
-        {children.split("").map((l, i) => (
-          <motion.span
-            variants={{
-              initial: {
-                y: 0,
-              },
-              hovered: {
-                y: "-100%",
-              },
-            }}
-            transition={{
-              duration: DURATION,
-              ease: [0.76, 0, 0.24, 1], // Premium easeInOut transition
-              delay: STAGGER * i,
-            }}
-            className="inline-block"
-            key={i}
-          >
-            {l === " " ? "\u00A0" : l}
-          </motion.span>
-        ))}
-      </div>
-      <div className="absolute inset-0">
-        {children.split("").map((l, i) => (
-          <motion.span
-            variants={{
-              initial: {
-                y: "100%",
-              },
-              hovered: {
-                y: 0,
-              },
-            }}
-            transition={{
-              duration: DURATION,
-              ease: [0.76, 0, 0.24, 1], // Premium easeInOut transition
-              delay: STAGGER * i,
-            }}
-            className="inline-block"
-            key={i}
-          >
-            {l === " " ? "\u00A0" : l}
-          </motion.span>
-        ))}
-      </div>
-    </motion.a>
   );
 }

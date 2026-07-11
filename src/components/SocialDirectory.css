@@ -1,0 +1,232 @@
+.poster-canvas {
+  --bg-color: #E8E8E8;
+  --imaneo-green: #03DF7B;
+  --imaneo-yellow: #FAFF5C;
+  --imaneo-teal: #4AD4C5;
+  --imaneo-blue: #302CCC;
+  --text-black: #111111;
+  --text-blue: #5C58E8;
+
+  container-type: inline-size;
+  width: 100%;
+  aspect-ratio: 16 / 7.5;
+  background-color: var(--bg-color);
+  position: relative;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.poster-canvas .card {
+  position: absolute;
+  width: 23cqw;
+  height: 23cqw;
+  background-color: white;
+  padding: 1.5cqw;
+  box-shadow: 0.5cqw 1cqw 2.5cqw rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 1.5cqw;
+}
+
+.poster-canvas .card h2 {
+  font-size: 2.3cqw;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.05cqw;
+  text-transform: uppercase;
+  color: var(--text-black);
+  margin: 0;
+}
+
+.poster-canvas .card p {
+  font-size: 1cqw;
+  font-weight: 700;
+  color: var(--text-black);
+  margin-top: 0.2cqw;
+}
+
+.poster-canvas .card-1 {
+  background-color: var(--imaneo-green);
+  top: 4cqw;
+  left: 3cqw;
+  transform: rotate(-15deg);
+  z-index: 2;
+}
+
+.poster-canvas .card-2 {
+  background-color: var(--imaneo-yellow);
+  top: 12cqw;
+  left: 17cqw;
+  transform: rotate(5deg);
+  z-index: 4;
+}
+
+.poster-canvas .card-3 {
+  background-color: var(--imaneo-teal);
+  top: 7cqw;
+  left: 36.5cqw;
+  transform: rotate(-3deg);
+  z-index: 1;
+  align-items: flex-end;
+}
+
+.poster-canvas .card-4 {
+  background-color: var(--imaneo-blue);
+  top: 18cqw;
+  left: 53cqw;
+  transform: rotate(3deg);
+  z-index: 5;
+  padding: 1.5cqw 1cqw;
+}
+
+.poster-canvas .card-5 {
+  background-color: var(--imaneo-green);
+  top: 3cqw;
+  left: 58cqw;
+  transform: rotate(12deg);
+  z-index: 2;
+}
+
+.poster-canvas .card-6 {
+  background-color: var(--imaneo-yellow);
+  top: 15cqw;
+  left: 73cqw;
+  transform: rotate(-4deg);
+  z-index: 3;
+}
+
+.poster-canvas .card-image-container {
+  width: 14cqw;
+  height: 19cqw;
+  margin: 0 auto;
+  margin-top: -1cqw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.poster-canvas .bottom-right-text {
+  position: absolute;
+  bottom: 1.5cqw;
+  right: 1.5cqw;
+  text-align: right;
+}
+
+.poster-canvas .bottom-right-text p {
+  font-size: 0.75cqw;
+  font-weight: 700;
+  margin-bottom: 0.2cqw;
+}
+
+.poster-canvas .bottom-right-text h2 {
+  font-size: 2.8cqw;
+  line-height: 1;
+}
+
+.poster-canvas .teal-text {
+  text-align: right;
+  width: 100%;
+}
+
+.poster-canvas .teal-text p {
+  font-size: 1.2cqw;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.poster-canvas .teal-text h2 {
+  font-size: 2.2cqw;
+  margin-top: 0.5cqw;
+}
+
+.poster-canvas .blue-card-content h2,
+.poster-canvas .blue-card-content p {
+  color: var(--imaneo-green);
+}
+
+.poster-canvas .arch-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.6cqw;
+  margin-top: 3.5cqw;
+}
+
+.poster-canvas .arch {
+  width: 4.5cqw;
+  height: 5cqw;
+  background-color: var(--text-black);
+  border-top-left-radius: 2.25cqw;
+  border-top-right-radius: 2.25cqw;
+}
+
+.poster-canvas .blue-footer {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 1.5cqw;
+  left: 1.5cqw;
+  right: 1.5cqw;
+  align-items: flex-end;
+}
+
+.poster-canvas .blue-footer-left h2 {
+  font-size: 2.2cqw;
+  line-height: 1;
+  margin-bottom: 0.3cqw;
+}
+
+.poster-canvas .blue-footer-left p {
+  font-size: 0.65cqw;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.poster-canvas .blue-footer-right p {
+  font-size: 0.75cqw;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.poster-canvas .footer-section {
+  position: absolute;
+  bottom: 4cqw;
+  left: 8cqw;
+  right: 8cqw;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2cqw;
+  z-index: 10;
+}
+
+.poster-canvas .imaneo-logo-wrapper {
+  position: relative;
+  width: 14cqw;
+  height: 12cqw;
+  margin-top: 1cqw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.poster-canvas .arabic-glyph {
+  position: absolute;
+  bottom: 3cqw;
+  right: 10cqw;
+  width: 18cqw;
+  height: 10cqw;
+  transform: rotate(-10deg);
+  z-index: 0;
+}
+
+/* Hide scrollbar for the wrapper */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
