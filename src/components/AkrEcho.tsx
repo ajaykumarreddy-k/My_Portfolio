@@ -48,8 +48,8 @@ export default function AkrEcho() {
 
     const panelVariants = {
         hidden: { opacity: 0, y: 100 },
-        visible: { 
-            opacity: 1, 
+        visible: {
+            opacity: 1,
             y: 0,
             transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
         }
@@ -57,9 +57,9 @@ export default function AkrEcho() {
 
     const popVariants = {
         hidden: { scale: 0, opacity: 0, rotate: -20 },
-        visible: { 
-            scale: 1, 
-            opacity: 1, 
+        visible: {
+            scale: 1,
+            opacity: 1,
             rotate: 0,
             transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }
         }
@@ -67,24 +67,24 @@ export default function AkrEcho() {
 
     return (
         <section ref={sectionRef} id="akr-echo-container" className="w-full flex flex-col font-sans mb-20 overflow-hidden">
-            
+
             {/* Section Heading & Graphic Banner */}
             <div className="w-full px-4 md:px-8 mb-12 flex flex-col items-center overflow-hidden">
-                
+
                 {/* Heading */}
-                <motion.h2 
+                <motion.h2
                     initial={{ opacity: 0, y: -50 }}
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-[10vw] md:text-[6vw] lg:text-[4rem] leading-[0.8] tracking-tighter font-black uppercase text-[#111]/80 m-0 self-start" 
+                    className="text-[10vw] md:text-[6vw] lg:text-[4rem] leading-[0.8] tracking-tighter font-black uppercase text-[#111]/80 m-0 self-start"
                     style={{ fontFamily: 'Impact, sans-serif', willChange: 'transform, opacity' }}
                 >
                     AKR-ECO.
                 </motion.h2>
-                
+
                 {/* Visual Banner Placeholder */}
                 <div className="w-full mt-12 md:mt-20 mb-8 flex flex-wrap items-center justify-center">
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                         transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
@@ -92,9 +92,9 @@ export default function AkrEcho() {
                         style={{ willChange: 'transform, opacity' }}
                     >
                         <span className="mr-1 sm:mr-2 md:mr-4">Visit(</span>
-                        
+
                         {/* Image 1: Earth Placeholder */}
-                        <motion.div 
+                        <motion.div
                             variants={popVariants}
                             initial="hidden"
                             animate={isInView ? "visible" : "hidden"}
@@ -103,9 +103,9 @@ export default function AkrEcho() {
                         >
                             <img src="/akr-echo/image1.jpeg" alt="Earth" className="absolute inset-0 w-full h-full object-cover opacity-90" />
                         </motion.div>
-                        
+
                         {/* Image 2: Thinker Placeholder */}
-                        <motion.div 
+                        <motion.div
                             variants={popVariants}
                             initial="hidden"
                             animate={isInView ? "visible" : "hidden"}
@@ -115,16 +115,16 @@ export default function AkrEcho() {
                         >
                             <img src="/akr-echo/image2.png" alt="Thinker" className="absolute inset-0 w-full h-full object-cover opacity-90" />
                         </motion.div>
-                        
+
                         <span className="ml-1 sm:ml-2 md:ml-4">)</span>
-                        
+
                         {/* Down Arrow SVG */}
-                        <motion.svg 
+                        <motion.svg
                             initial={{ opacity: 0, y: -20 }}
                             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
-                            className="w-[8vw] h-[8vw] sm:w-[10vw] sm:h-[10vw] md:w-[10vw] md:h-[10vw] lg:w-[130px] lg:h-[130px] ml-2 sm:ml-4 md:ml-8" 
-                            viewBox="0 0 24 24" 
+                            className="w-[8vw] h-[8vw] sm:w-[10vw] sm:h-[10vw] md:w-[10vw] md:h-[10vw] lg:w-[130px] lg:h-[130px] ml-2 sm:ml-4 md:ml-8"
+                            viewBox="0 0 24 24"
                             fill="none"
                         >
                             <path d="M12 3v18m0 0l-7-7m7 7l7-7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter" />
@@ -134,22 +134,22 @@ export default function AkrEcho() {
             </div>
 
             {/* 4-Column Gallery */}
-            <motion.div 
+            <motion.div
                 variants={containerVariants}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
-                className="w-full h-[500px] md:h-[75vh] flex gap-1 p-1 md:gap-2 md:p-2 bg-white overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+                className="w-full grid grid-cols-2 auto-rows-[220px] sm:auto-rows-[300px] md:flex md:h-[75vh] gap-1 p-1 md:gap-2 md:p-2 bg-white md:overflow-x-auto md:snap-x md:snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
             >
                 {panels.map((panel, idx) => (
-                    <motion.a 
-                        key={idx} 
+                    <motion.a
+                        key={idx}
                         href={panel.link}
                         target="_blank"
                         rel="noopener noreferrer"
                         variants={panelVariants}
                         whileHover={{ scale: 0.98 }}
                         transition={{ duration: 0.2 }}
-                        className="flex-none w-[85vw] sm:w-[45vw] md:w-auto md:flex-1 h-full bg-[#EEEEEE] relative overflow-hidden flex flex-col items-center justify-end snap-center group rounded-sm block"
+                        className="w-full h-full md:w-auto md:flex-1 bg-[#EEEEEE] relative overflow-hidden flex flex-col items-center justify-end md:snap-center group rounded-sm block"
                         style={{ willChange: 'transform, opacity' }}
                     >
                         {/* Huge Graphic */}
@@ -158,18 +158,18 @@ export default function AkrEcho() {
                         </div>
 
                         {/* Bottom Pill */}
-                        <div className="relative z-10 mb-8 bg-white px-4 py-2 rounded-full flex items-center gap-2 shadow-sm whitespace-nowrap group-hover:-translate-y-2 transition-transform duration-300 cursor-pointer">
-                            <span className="text-[#111] opacity-70">
+                        <div className="relative z-10 mb-4 md:mb-8 bg-white px-2 py-1.5 md:px-4 md:py-2 rounded-full flex items-center gap-1 md:gap-2 shadow-sm whitespace-nowrap group-hover:-translate-y-2 transition-transform duration-300 cursor-pointer max-w-[90%] overflow-hidden">
+                            <span className="text-[#111] opacity-70 scale-75 md:scale-100 shrink-0">
                                 {panel.icon}
                             </span>
-                            <span className="text-xs md:text-sm font-mono text-[#111] font-semibold tracking-tight uppercase">
+                            <span className="text-[9px] md:text-sm font-mono text-[#111] font-semibold tracking-tight uppercase truncate">
                                 {panel.title}
                             </span>
                         </div>
                     </motion.a>
                 ))}
             </motion.div>
-            
+
         </section>
     )
 }

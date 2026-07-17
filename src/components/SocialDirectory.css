@@ -224,3 +224,56 @@
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+/* Mobile Optimization for Social Directory */
+@media (max-width: 768px) {
+  .poster-canvas {
+    aspect-ratio: auto;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    height: auto;
+    min-width: 100% !important;
+    width: 100% !important;
+  }
+  .poster-canvas .card {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1;
+    top: auto !important;
+    left: auto !important;
+    padding: 1rem !important;
+    border-radius: 1rem !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+  }
+  .poster-canvas .card-3, .poster-canvas .card-4 {
+    display: none !important;
+  }
+  .poster-canvas .card h2 {
+    font-size: 1.5rem !important;
+    letter-spacing: -0.02em !important;
+  }
+  .poster-canvas .card p {
+    font-size: 0.75rem !important;
+    margin-top: 0.25rem !important;
+  }
+  .poster-canvas .bottom-right-text {
+    bottom: 1rem !important;
+    right: 1rem !important;
+  }
+  .poster-canvas .bottom-right-text h2 {
+    font-size: 1.75rem !important;
+  }
+  .poster-canvas .bottom-right-text p {
+    font-size: 0.65rem !important;
+  }
+  .poster-canvas .card-image-container {
+    width: 80% !important;
+    height: auto !important;
+    aspect-ratio: 1;
+    margin: 0 auto !important;
+    margin-top: -0.5rem !important;
+  }
+}

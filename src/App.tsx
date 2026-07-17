@@ -218,553 +218,553 @@ export default function App() {
         {/* 🚀 GIMAEV-INSPIRED EDITORIAL HOME PAGE & TITLE SCREEN */}
         <section className="relative min-h-screen bg-[#FDFCF7] text-[#0a0a0a] font-mori flex flex-col justify-start px-5 pt-20 pb-5 md:px-16 md:py-8 overflow-hidden">
 
-        {/* Subtle cinematic physical grain texture overlay */}
-        <div className="absolute inset-0 bg-grain pointer-events-none z-10 opacity-[0.025]" />
+          {/* Subtle cinematic physical grain texture overlay */}
+          <div className="absolute inset-0 bg-grain pointer-events-none z-10 opacity-[0.025]" />
 
-        {/* Top Header Row */}
-        <div className="relative w-full flex flex-col md:flex-row md:items-start justify-between gap-8 z-20">
+          {/* Top Header Row */}
+          <div className="relative w-full flex flex-col md:flex-row md:items-start justify-between gap-8 z-20">
 
-          {/* Logo & Vol metadata (Left Column top) */}
-          <div className="flex flex-col gap-2">
-            <h1
-              className="text-2xl font-bold tracking-tight text-[#0a0a0a] leading-snug"
-              style={{ fontFamily: "'PP Mori', sans-serif" }}
-            >
-              <span className="block">Ajay Kumar Reddy K. <span aria-hidden="true" className="inline-block align-middle text-xl">✌️🙂</span></span>
-              <span className="block font-medium text-[#0a0a0a]/70 text-base tracking-normal">— Creative Technologist &amp; AI Engineer</span>
-            </h1>
-            <p className="text-[10px] uppercase tracking-[0.25em] text-[#0a0a0a]/50 font-bold leading-relaxed">
-              Selected Engineering &amp; AI Works, vol. 2 <br />
-              for 2022 — 2026
-            </p>
-          </div>
-
-        </div>
-
-        {/* Core 2-Column Content Layout */}
-        <div className="relative w-full flex flex-col md:flex-row gap-6 md:gap-16 items-start z-20 mt-6 md:mt-12 transition-transform duration-500">
-
-          {/* Left Column (Quiet taglines on desktop) */}
-          <div className="w-full md:w-[25%] hidden md:flex flex-col justify-between h-[20vh]">
-            <div className="text-[10px] uppercase tracking-[0.25em] text-[#0a0a0a]/40 font-bold leading-relaxed">
-              Quiet confidence. <br />
-              Built in silence, <br />
-              designed to resonate.
-            </div>
-          </div>
-
-          {/* Right Column (The primary content - shifted upwards to fit beautifully in the upper viewport) */}
-          <div className="w-full md:w-[70%] max-w-4xl flex flex-col items-start gap-3 md:gap-6 md:-translate-y-[5vh] lg:-translate-y-[6vh]">
-
-            {/* ABOUT ME label */}
-            <div className="text-[10px] uppercase tracking-[0.3em] text-[#0a0a0a]/40 font-black">
-              ABOUT ME
-            </div>
-
-            {/* Huge, Elegant Editorial Biography */}
-            {/* Huge, Elegant Editorial Biography with Premium Word-by-Word Reveal */}
-            <motion.h2
-              className="text-[3.8vw] sm:text-xl md:text-[2.5rem] font-normal leading-[1.55] sm:leading-[1.35] md:leading-[1.25] text-[#0a0a0a] tracking-[-0.01em] md:tracking-[-0.02em] max-w-4xl font-sans"
-              style={{ fontFamily: "'Google Sans', sans-serif" }}
-              initial="hidden"
-              animate={isPreloaderActive ? "hidden" : "visible"}
-              variants={{
-                visible: {
-                  transition: {
-                    staggerChildren: 0.007
-                  }
-                }
-              }}
-            >
-              {[
-                { w: "Hello", bold: false },
-                { w: "there!", bold: false },
-                { w: "My", bold: false },
-                { w: "name", bold: false },
-                { w: "is", bold: false },
-                { w: "Ajay", bold: true },
-                { w: "Kumar", bold: true },
-                { w: "Reddy", bold: true },
-                { w: "K.", bold: true },
-                { w: "I’m", bold: false },
-                { w: "a", bold: false },
-                { w: "Creative", bold: false },
-                { w: "Technologist", bold: false },
-                { w: "and", bold: false },
-                { w: "AI", bold: false },
-                { w: "Engineer,", bold: false },
-                { w: "currently", bold: false },
-                { w: "building", bold: false },
-                { w: "advanced", bold: false },
-                { w: "machine", bold: false },
-                { w: "learning", bold: false },
-                { w: "suites", bold: false },
-                { w: "and", bold: false },
-                { w: "intelligent", bold: false },
-                { w: "triage", bold: false },
-                { w: "interfaces.", bold: false },
-                { w: "Previously,", bold: false },
-                { w: "I", bold: false },
-                { w: "built", bold: false },
-                { w: "Medyphas", bold: false },
-                { w: "AI", bold: false },
-                { w: "and", bold: false },
-                { w: "led", bold: false },
-                { w: "autonomous", bold: false },
-                { w: "supply-chain", bold: false },
-                { w: "models.", bold: false },
-                { w: "Beyond", bold: false },
-                { w: "building", bold: false },
-                { w: "AI", bold: false },
-                { w: "pipelines,", bold: false },
-                { w: "I", bold: false },
-                { w: "enjoy", bold: false },
-                { w: "tinkering", bold: false },
-                { w: "with", bold: false },
-                { w: "generative", bold: false },
-                { w: "adversarial", bold: false },
-                { w: "networks,", bold: false },
-                { w: "exploring", bold: false },
-                { w: "computer", bold: false },
-                { w: "vision", bold: false },
-                { w: "algorithms,", bold: false },
-                { w: "and", bold: false },
-                { w: "publishing", bold: false },
-                { w: "open-source", bold: false },
-                { w: "experiments.", bold: false }
-              ].map((item, idx) => (
-                <span
-                  key={idx}
-                  className="inline-block overflow-hidden mr-[0.23em] py-[0.05em] align-top"
-                >
-                  <motion.span
-                    className={`inline-block ${item.bold ? "font-bold text-[#0a0a0a]" : "text-[#0a0a0a]/85"}`}
-                    variants={{
-                      hidden: { y: "100%", opacity: 0.1 },
-                      visible: { y: 0, opacity: 1 }
-                    }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 24,
-                      mass: 0.8
-                    }}
-                  >
-                    {item.w}
-                  </motion.span>
-                </span>
-              ))}
-            </motion.h2>
-
-            {/* Portrait + Stickers Row */}
-            <div className="w-full flex flex-row items-start gap-5 md:gap-8">
-
-              {/* Rounded Portrait Image — optimized sizing */}
-              <div className="flex-shrink-0 w-[50%] sm:w-[55%] md:w-[255px] lg:w-[290px] xl:w-[320px] rounded-[1.5rem] md:rounded-[2rem] overflow-hidden border border-black/[0.04] aspect-[4/5] md:aspect-[4/3] relative group shadow-md bg-stone-100">
-                <img
-                  src="/footerbackground.jpeg"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = "/me.png";
-                  }}
-                  alt="Ajay Kumar Reddy K."
-                  className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-700"
-                  fetchPriority="high"
-                  loading="eager"
-                  decoding="async"
-                />
-              </div>
-
-              {/* Sticker Wall — bigger stickers */}
-              <div className="flex-1 flex flex-wrap items-start justify-start gap-4 md:gap-7 pb-3 md:pb-6">
-
-                {/* Linux Tux */}
-                <img
-                  src="/Stickers/Stickerview1-128-removebg-preview.png"
-                  alt="Linux sticker"
-                  className="w-12 h-12 sm:w-24 sm:h-24 md:w-32 md:h-32 object-contain drop-shadow-lg hover:scale-110 hover:-rotate-3 transition-all duration-300 cursor-pointer select-none"
-                  style={{ transform: "rotate(-8deg)" }}
-                  draggable={false}
-                />
-
-                {/* Figma */}
-                <img
-                  src="/Stickers/figma-adesivo-sticker-removebg-preview.png"
-                  alt="Figma sticker"
-                  className="w-9 h-9 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain drop-shadow-lg hover:scale-110 hover:rotate-3 transition-all duration-300 cursor-pointer select-none"
-                  style={{ transform: "rotate(6deg)" }}
-                  draggable={false}
-                />
-
-                {/* GitHub */}
-                <img
-                  src="/Stickers/st_small_507x507-pad_600x600_f8f8f8-removebg-preview.png"
-                  alt="GitHub sticker"
-                  className="w-12 h-12 sm:w-24 sm:h-24 md:w-32 md:h-32 object-contain drop-shadow-lg hover:scale-110 hover:-rotate-2 transition-all duration-300 cursor-pointer select-none"
-                  style={{ transform: "rotate(-4deg)" }}
-                  draggable={false}
-                />
-
-                {/* Laptop Sticker */}
-                <img
-                  src="/Stickers/lap%20pre.png"
-                  alt="Laptop sticker"
-                  className="w-12 h-12 sm:w-24 sm:h-24 md:w-32 md:h-32 object-contain drop-shadow-lg hover:scale-110 hover:-rotate-6 transition-all duration-300 cursor-pointer select-none"
-                  style={{ transform: "rotate(-6deg)" }}
-                  draggable={false}
-                />
-
-                {/* Code tag </> */}
-                <img
-                  src="/Stickers/image.png"
-                  alt="Code sticker"
-                  className="w-9 h-9 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain drop-shadow-lg hover:scale-110 hover:rotate-5 transition-all duration-300 cursor-pointer select-none"
-                  style={{ transform: "rotate(10deg)" }}
-                  draggable={false}
-                />
-
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-        {/* Bottom Navigation & Metadata Footer Row (Pushed to the absolute bottom dynamically) */}
-        <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 md:gap-6 z-20 mt-auto border-t border-black/[0.05] pt-4 md:pt-6">
-
-          {/* Bottom Left: Rounded Navigation Pills */}
-          <div className="flex gap-2">
-            {[
-              { label: 'Works', href: '#projects', active: false },
-              { label: 'About', href: '#', active: true },
-              { label: 'Contact', href: '#reach-me', active: false }
-            ].map((pill, i) => (
-              <a
-                key={i}
-                href={pill.href}
-                className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-[0.15em] border transition-all duration-300 ${pill.active
-                  ? 'bg-[#0a0a0a] text-white border-transparent'
-                  : 'bg-transparent text-[#0a0a0a]/60 border-black/10 hover:border-black hover:text-[#0a0a0a]'
-                  }`}
+            {/* Logo & Vol metadata (Left Column top) */}
+            <div className="flex flex-col gap-2">
+              <h1
+                className="text-2xl font-bold tracking-tight text-[#0a0a0a] leading-snug"
                 style={{ fontFamily: "'PP Mori', sans-serif" }}
               >
-                {pill.label}
-              </a>
-            ))}
+                <span className="block">Ajay Kumar Reddy K. <span aria-hidden="true" className="inline-block align-middle text-xl">✌️🙂</span></span>
+                <span className="block font-medium text-[#0a0a0a]/70 text-base tracking-normal">— Creative Technologist &amp; AI Engineer</span>
+              </h1>
+              <p className="text-[10px] uppercase tracking-[0.25em] text-[#0a0a0a]/50 font-bold leading-relaxed">
+                Selected Engineering &amp; AI Works, vol. 2 <br />
+                for 2022 — 2026
+              </p>
+            </div>
+
           </div>
 
-          {/* Bottom Right: Metadata Columns */}
-          <div className="flex gap-12 text-left">
-            <div>
-              <div className="text-[9px] uppercase tracking-[0.25em] text-[#0a0a0a]/40 font-black mb-1">POSITION</div>
-              <div className="text-xs font-bold uppercase tracking-[0.1em] text-[#0a0a0a]/80" style={{ fontFamily: "'PP Mori', sans-serif" }}>Design Lead</div>
+          {/* Core 2-Column Content Layout */}
+          <div className="relative w-full flex flex-col md:flex-row gap-6 md:gap-16 items-start z-20 mt-6 md:mt-12 transition-transform duration-500">
+
+            {/* Left Column (Quiet taglines on desktop) */}
+            <div className="w-full md:w-[25%] hidden md:flex flex-col justify-between h-[20vh]">
+              <div className="text-[10px] uppercase tracking-[0.25em] text-[#0a0a0a]/40 font-bold leading-relaxed">
+                Quiet confidence. <br />
+                Built in silence, <br />
+                designed to resonate.
+              </div>
             </div>
-            <div>
-              <div className="text-[9px] uppercase tracking-[0.25em] text-[#0a0a0a]/40 font-black mb-1">EXPERIENCE</div>
-              <div className="text-xs font-bold uppercase tracking-[0.1em] text-[#0a0a0a]/80" style={{ fontFamily: "'PP Mori', sans-serif" }}>3 years</div>
+
+            {/* Right Column (The primary content - shifted upwards to fit beautifully in the upper viewport) */}
+            <div className="w-full md:w-[70%] max-w-4xl flex flex-col items-start gap-3 md:gap-6 md:-translate-y-[5vh] lg:-translate-y-[6vh]">
+
+              {/* ABOUT ME label */}
+              <div className="text-[10px] uppercase tracking-[0.3em] text-[#0a0a0a]/40 font-black">
+                ABOUT ME
+              </div>
+
+              {/* Huge, Elegant Editorial Biography */}
+              {/* Huge, Elegant Editorial Biography with Premium Word-by-Word Reveal */}
+              <motion.h2
+                className="text-[3.8vw] sm:text-xl md:text-[2.5rem] font-normal leading-[1.55] sm:leading-[1.35] md:leading-[1.25] text-[#0a0a0a] tracking-[-0.01em] md:tracking-[-0.02em] max-w-4xl font-sans"
+                style={{ fontFamily: "'Google Sans', sans-serif" }}
+                initial="hidden"
+                animate={isPreloaderActive ? "hidden" : "visible"}
+                variants={{
+                  visible: {
+                    transition: {
+                      staggerChildren: 0.007
+                    }
+                  }
+                }}
+              >
+                {[
+                  { w: "Hello", bold: false },
+                  { w: "there!", bold: false },
+                  { w: "My", bold: false },
+                  { w: "name", bold: false },
+                  { w: "is", bold: false },
+                  { w: "Ajay", bold: true },
+                  { w: "Kumar", bold: true },
+                  { w: "Reddy", bold: true },
+                  { w: "K.", bold: true },
+                  { w: "I’m", bold: false },
+                  { w: "a", bold: false },
+                  { w: "Creative", bold: false },
+                  { w: "Technologist", bold: false },
+                  { w: "and", bold: false },
+                  { w: "AI", bold: false },
+                  { w: "Engineer,", bold: false },
+                  { w: "currently", bold: false },
+                  { w: "building", bold: false },
+                  { w: "advanced", bold: false },
+                  { w: "machine", bold: false },
+                  { w: "learning", bold: false },
+                  { w: "suites", bold: false },
+                  { w: "and", bold: false },
+                  { w: "intelligent", bold: false },
+                  { w: "triage", bold: false },
+                  { w: "interfaces.", bold: false },
+                  { w: "Previously,", bold: false },
+                  { w: "I", bold: false },
+                  { w: "built", bold: false },
+                  { w: "Medyphas", bold: false },
+                  { w: "AI", bold: false },
+                  { w: "and", bold: false },
+                  { w: "led", bold: false },
+                  { w: "autonomous", bold: false },
+                  { w: "supply-chain", bold: false },
+                  { w: "models.", bold: false },
+                  { w: "Beyond", bold: false },
+                  { w: "building", bold: false },
+                  { w: "AI", bold: false },
+                  { w: "pipelines,", bold: false },
+                  { w: "I", bold: false },
+                  { w: "enjoy", bold: false },
+                  { w: "tinkering", bold: false },
+                  { w: "with", bold: false },
+                  { w: "generative", bold: false },
+                  { w: "adversarial", bold: false },
+                  { w: "networks,", bold: false },
+                  { w: "exploring", bold: false },
+                  { w: "computer", bold: false },
+                  { w: "vision", bold: false },
+                  { w: "algorithms,", bold: false },
+                  { w: "and", bold: false },
+                  { w: "publishing", bold: false },
+                  { w: "open-source", bold: false },
+                  { w: "experiments.", bold: false }
+                ].map((item, idx) => (
+                  <span
+                    key={idx}
+                    className="inline-block overflow-hidden mr-[0.23em] py-[0.05em] align-top"
+                  >
+                    <motion.span
+                      className={`inline-block ${item.bold ? "font-bold text-[#0a0a0a]" : "text-[#0a0a0a]/85"}`}
+                      variants={{
+                        hidden: { y: "100%", opacity: 0.1 },
+                        visible: { y: 0, opacity: 1 }
+                      }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 24,
+                        mass: 0.8
+                      }}
+                    >
+                      {item.w}
+                    </motion.span>
+                  </span>
+                ))}
+              </motion.h2>
+
+              {/* Portrait + Stickers Row */}
+              <div className="w-full flex flex-row items-start gap-5 md:gap-8">
+
+                {/* Rounded Portrait Image — optimized sizing */}
+                <div className="flex-shrink-0 w-[50%] sm:w-[55%] md:w-[255px] lg:w-[290px] xl:w-[320px] rounded-[1.5rem] md:rounded-[2rem] overflow-hidden border border-black/[0.04] aspect-[4/5] md:aspect-[4/3] relative group shadow-md bg-stone-100">
+                  <img
+                    src="/footerbackground.jpeg"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = "/me.png";
+                    }}
+                    alt="Ajay Kumar Reddy K."
+                    className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-700"
+                    fetchPriority="high"
+                    loading="eager"
+                    decoding="async"
+                  />
+                </div>
+
+                {/* Sticker Wall — bigger stickers */}
+                <div className="flex-1 flex flex-wrap items-start justify-start gap-4 md:gap-7 pb-3 md:pb-6">
+
+                  {/* Linux Tux */}
+                  <img
+                    src="/Stickers/Stickerview1-128-removebg-preview.png"
+                    alt="Linux sticker"
+                    className="w-12 h-12 sm:w-24 sm:h-24 md:w-32 md:h-32 object-contain drop-shadow-lg hover:scale-110 hover:-rotate-3 transition-all duration-300 cursor-pointer select-none"
+                    style={{ transform: "rotate(-8deg)" }}
+                    draggable={false}
+                  />
+
+                  {/* Figma */}
+                  <img
+                    src="/Stickers/figma-adesivo-sticker-removebg-preview.png"
+                    alt="Figma sticker"
+                    className="w-9 h-9 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain drop-shadow-lg hover:scale-110 hover:rotate-3 transition-all duration-300 cursor-pointer select-none"
+                    style={{ transform: "rotate(6deg)" }}
+                    draggable={false}
+                  />
+
+                  {/* GitHub */}
+                  <img
+                    src="/Stickers/st_small_507x507-pad_600x600_f8f8f8-removebg-preview.png"
+                    alt="GitHub sticker"
+                    className="w-12 h-12 sm:w-24 sm:h-24 md:w-32 md:h-32 object-contain drop-shadow-lg hover:scale-110 hover:-rotate-2 transition-all duration-300 cursor-pointer select-none"
+                    style={{ transform: "rotate(-4deg)" }}
+                    draggable={false}
+                  />
+
+                  {/* Laptop Sticker */}
+                  <img
+                    src="/Stickers/lap%20pre.png"
+                    alt="Laptop sticker"
+                    className="w-12 h-12 sm:w-24 sm:h-24 md:w-32 md:h-32 object-contain drop-shadow-lg hover:scale-110 hover:-rotate-6 transition-all duration-300 cursor-pointer select-none"
+                    style={{ transform: "rotate(-6deg)" }}
+                    draggable={false}
+                  />
+
+                  {/* Code tag </> */}
+                  <img
+                    src="/Stickers/image.png"
+                    alt="Code sticker"
+                    className="w-9 h-9 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain drop-shadow-lg hover:scale-110 hover:rotate-5 transition-all duration-300 cursor-pointer select-none"
+                    style={{ transform: "rotate(10deg)" }}
+                    draggable={false}
+                  />
+
+                </div>
+              </div>
+
             </div>
+
           </div>
 
-        </div>
+          {/* Bottom Navigation & Metadata Footer Row (Pushed to the absolute bottom dynamically) */}
+          <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 md:gap-6 z-20 mt-auto border-t border-black/[0.05] pt-4 md:pt-6">
 
-      </section>
-
-      {/* 🛠 PROJECTS SECTION (Featured Card Layout) */}
-      <Section
-        id="projects"
-        title="Selected Works."
-        subtitle="A curated archive of design-led engineering and experimental digital solutions."
-        className="bg-[#F8F7F5]"
-        isFirst={true}
-      >
-        {/* DOMINANT FEATURED CARD */}
-        {/* PREMIUM SCROLL STACK PORTFOLIO LAYOUT */}
-        <div className="max-w-6xl mx-auto py-12 pb-20 px-4 md:px-0">
-          <ScrollStack
-            itemDistance={90}
-            itemScale={0.025}
-            itemStackDistance={35}
-            stackPosition="20%"
-            scaleEndPosition="10%"
-            baseScale={0.88}
-            rotationAmount={1.5}
-            blurAmount={1.5}
-            useWindowScroll={true}
-          >
-            {projects.map((project, i) => {
-              const cardBackgrounds = [
-                'bg-gradient-to-br from-stone-900 to-stone-950 border border-white/5 shadow-2xl',
-                'bg-gradient-to-br from-[#1a1815] to-[#0f0e0c] border border-white/5 shadow-2xl',
-                'bg-gradient-to-br from-[#121620] to-[#0a0d14] border border-white/5 shadow-2xl',
-                'bg-gradient-to-br from-[#161a24] to-[#0e1118] border border-white/5 shadow-2xl'
-              ];
-
-              return (
-                <ScrollStackItem
+            {/* Bottom Left: Rounded Navigation Pills */}
+            <div className="flex gap-2">
+              {[
+                { label: 'Works', href: '#projects', active: false },
+                { label: 'About', href: '#', active: true },
+                { label: 'Contact', href: '#reach-me', active: false }
+              ].map((pill, i) => (
+                <a
                   key={i}
-                  itemClassName="bg-gradient-to-br from-[#121318] to-[#090A0D] border border-white/[0.06] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.4)] text-white"
+                  href={pill.href}
+                  className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-[0.15em] border transition-all duration-300 ${pill.active
+                    ? 'bg-[#0a0a0a] text-white border-transparent'
+                    : 'bg-transparent text-[#0a0a0a]/60 border-black/10 hover:border-black hover:text-[#0a0a0a]'
+                    }`}
+                  style={{ fontFamily: "'PP Mori', sans-serif" }}
                 >
-                  <div className="w-full h-full flex flex-col md:flex-row items-stretch min-h-[360px] md:min-h-[440px]">
+                  {pill.label}
+                </a>
+              ))}
+            </div>
 
-                    {/* LEFT PANEL: Rich Editorial Information */}
-                    <div className="flex-[0.8] flex flex-col justify-between p-5 md:p-12 min-h-[220px] md:min-h-0">
-                      <div>
-                        {/* Top Row: Index & Category */}
-                        <div
-                          className="flex justify-between items-center text-[10px] font-bold tracking-[0.15em] text-white/45 uppercase mb-5"
-                          style={{ fontFamily: "'Google Sans', sans-serif" }}
-                        >
-                          <span>0{i + 1} / {project.tags[0] || 'ENGINEERING'}</span>
-                          <span className="px-3 py-1 bg-white/5 rounded-full border border-white/[0.04] text-[9px] tracking-widest font-bold text-white/50">ACTIVE PORT</span>
+            {/* Bottom Right: Metadata Columns */}
+            <div className="flex gap-12 text-left">
+              <div>
+                <div className="text-[9px] uppercase tracking-[0.25em] text-[#0a0a0a]/40 font-black mb-1">POSITION</div>
+                <div className="text-xs font-bold uppercase tracking-[0.1em] text-[#0a0a0a]/80" style={{ fontFamily: "'PP Mori', sans-serif" }}>Design Lead</div>
+              </div>
+              <div>
+                <div className="text-[9px] uppercase tracking-[0.25em] text-[#0a0a0a]/40 font-black mb-1">EXPERIENCE</div>
+                <div className="text-xs font-bold uppercase tracking-[0.1em] text-[#0a0a0a]/80" style={{ fontFamily: "'PP Mori', sans-serif" }}>3 years</div>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+        {/* 🛠 PROJECTS SECTION (Featured Card Layout) */}
+        <Section
+          id="projects"
+          title="Selected Works."
+          subtitle="A curated archive of design-led engineering and experimental digital solutions."
+          className="bg-[#F8F7F5]"
+          isFirst={true}
+        >
+          {/* DOMINANT FEATURED CARD */}
+          {/* PREMIUM SCROLL STACK PORTFOLIO LAYOUT */}
+          <div className="max-w-6xl mx-auto py-12 pb-20 px-4 md:px-0">
+            <ScrollStack
+              itemDistance={90}
+              itemScale={0.025}
+              itemStackDistance={35}
+              stackPosition="20%"
+              scaleEndPosition="10%"
+              baseScale={0.88}
+              rotationAmount={1.5}
+              blurAmount={1.5}
+              useWindowScroll={true}
+            >
+              {projects.map((project, i) => {
+                const cardBackgrounds = [
+                  'bg-gradient-to-br from-stone-900 to-stone-950 border border-white/5 shadow-2xl',
+                  'bg-gradient-to-br from-[#1a1815] to-[#0f0e0c] border border-white/5 shadow-2xl',
+                  'bg-gradient-to-br from-[#121620] to-[#0a0d14] border border-white/5 shadow-2xl',
+                  'bg-gradient-to-br from-[#161a24] to-[#0e1118] border border-white/5 shadow-2xl'
+                ];
+
+                return (
+                  <ScrollStackItem
+                    key={i}
+                    itemClassName="bg-gradient-to-br from-[#121318] to-[#090A0D] border border-white/[0.06] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.4)] text-white"
+                  >
+                    <div className="w-full h-full flex flex-col md:flex-row items-stretch min-h-[360px] md:min-h-[440px]">
+
+                      {/* LEFT PANEL: Rich Editorial Information */}
+                      <div className="flex-[0.8] flex flex-col justify-between p-5 md:p-12 min-h-[220px] md:min-h-0">
+                        <div>
+                          {/* Top Row: Index & Category */}
+                          <div
+                            className="flex justify-between items-center text-[10px] font-bold tracking-[0.15em] text-white/45 uppercase mb-5"
+                            style={{ fontFamily: "'Google Sans', sans-serif" }}
+                          >
+                            <span>0{i + 1} / {project.tags[0] || 'ENGINEERING'}</span>
+                            <span className="px-3 py-1 bg-white/5 rounded-full border border-white/[0.04] text-[9px] tracking-widest font-bold text-white/50">ACTIVE PORT</span>
+                          </div>
+
+                          {/* Title */}
+                          <h3
+                            className="text-xl md:text-4xl font-bold tracking-tight text-white mb-3 md:mb-4 leading-tight"
+                            style={{ fontFamily: "'Google Sans', sans-serif" }}
+                          >
+                            {project.title}
+                          </h3>
+
+                          {/* Description */}
+                          <p
+                            className="text-sm md:text-base text-white/80 leading-relaxed max-w-xl font-normal mb-6"
+                            style={{ fontFamily: "'Google Sans', sans-serif" }}
+                          >
+                            {project.desc}
+                          </p>
                         </div>
 
-                        {/* Title */}
-                        <h3
-                          className="text-xl md:text-4xl font-bold tracking-tight text-white mb-3 md:mb-4 leading-tight"
-                          style={{ fontFamily: "'Google Sans', sans-serif" }}
-                        >
-                          {project.title}
-                        </h3>
-
-                        {/* Description */}
-                        <p
-                          className="text-sm md:text-base text-white/80 leading-relaxed max-w-xl font-normal mb-6"
-                          style={{ fontFamily: "'Google Sans', sans-serif" }}
-                        >
-                          {project.desc}
-                        </p>
-                      </div>
-
-                      {/* Bottom Row: Tags & CTA */}
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-5 border-t border-white/10">
-                        <div className="flex flex-wrap gap-2">
-                          {project.tags.length > 0 ? (
-                            project.tags.map((tag) => (
+                        {/* Bottom Row: Tags & CTA */}
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-5 border-t border-white/10">
+                          <div className="flex flex-wrap gap-2">
+                            {project.tags.length > 0 ? (
+                              project.tags.map((tag) => (
+                                <span
+                                  key={tag}
+                                  className="px-3.5 py-1 bg-white/5 rounded-full text-[9px] uppercase tracking-[0.15em] font-bold text-white/50 border border-white/[0.04]"
+                                  style={{ fontFamily: "'Google Sans', sans-serif" }}
+                                >
+                                  {tag}
+                                </span>
+                              ))
+                            ) : (
                               <span
-                                key={tag}
                                 className="px-3.5 py-1 bg-white/5 rounded-full text-[9px] uppercase tracking-[0.15em] font-bold text-white/50 border border-white/[0.04]"
                                 style={{ fontFamily: "'Google Sans', sans-serif" }}
                               >
-                                {tag}
+                                Engineering &amp; AI
                               </span>
-                            ))
-                          ) : (
-                            <span
-                              className="px-3.5 py-1 bg-white/5 rounded-full text-[9px] uppercase tracking-[0.15em] font-bold text-white/50 border border-white/[0.04]"
-                              style={{ fontFamily: "'Google Sans', sans-serif" }}
-                            >
-                              Engineering &amp; AI
-                            </span>
-                          )}
+                            )}
+                          </div>
+
+                          <a
+                            href={project.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center px-6 py-3 bg-[#E9FF61] text-black font-bold text-xs uppercase tracking-[0.15em] rounded-full hover:bg-[#d6ed42] hover:scale-[1.03] active:scale-[0.97] transition-all duration-300 shadow-[0_15px_30px_rgba(233,255,97,0.15)] group/btn"
+                            style={{ fontFamily: "'Google Sans', sans-serif" }}
+                          >
+                            <span>{i === 0 ? 'Explore Project' : 'Launch App'}</span>
+                            <span className="ml-1.5 transform group-hover/btn:translate-x-0.5 transition-transform duration-300">→</span>
+                          </a>
                         </div>
-
-                        <a
-                          href={project.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center px-6 py-3 bg-[#E9FF61] text-black font-bold text-xs uppercase tracking-[0.15em] rounded-full hover:bg-[#d6ed42] hover:scale-[1.03] active:scale-[0.97] transition-all duration-300 shadow-[0_15px_30px_rgba(233,255,97,0.15)] group/btn"
-                          style={{ fontFamily: "'Google Sans', sans-serif" }}
-                        >
-                          <span>{i === 0 ? 'Explore Project' : 'Launch App'}</span>
-                          <span className="ml-1.5 transform group-hover/btn:translate-x-0.5 transition-transform duration-300">→</span>
-                        </a>
                       </div>
+
+                      {/* RIGHT PANEL: Extended Massive Visual Showcase (Fully seamless background) */}
+                      <div className="flex-[1.2] min-h-[180px] md:min-h-0 relative overflow-hidden bg-transparent group flex items-center justify-center p-4 md:p-8">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-contain opacity-95 rounded-2xl md:rounded-[2rem] border border-white/[0.08] shadow-[0_15px_35px_rgba(0,0,0,0.25)] transition-transform duration-750 group-hover:scale-[1.02]"
+                        />
+                      </div>
+
                     </div>
+                  </ScrollStackItem>
+                );
+              })}
+            </ScrollStack>
+          </div>
+        </Section>
 
-                    {/* RIGHT PANEL: Extended Massive Visual Showcase (Fully seamless background) */}
-                    <div className="flex-[1.2] min-h-[180px] md:min-h-0 relative overflow-hidden bg-transparent group flex items-center justify-center p-4 md:p-8">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-contain opacity-95 rounded-2xl md:rounded-[2rem] border border-white/[0.08] shadow-[0_15px_35px_rgba(0,0,0,0.25)] transition-transform duration-750 group-hover:scale-[1.02]"
-                      />
-                    </div>
-
-                  </div>
-                </ScrollStackItem>
-              );
-            })}
-          </ScrollStack>
+        {/* 🚀 AKR ECHO HORIZONTAL GALLERY */}
+        <div className="relative z-30 -mt-16 rounded-t-[3rem] bg-[#F8F7F5] pt-20">
+          <AkrEcho />
         </div>
-      </Section>
 
-      {/* 🚀 AKR ECHO HORIZONTAL GALLERY */}
-      <div className="relative z-30 -mt-16 rounded-t-[3rem] bg-[#F8F7F5] pt-20">
-        <AkrEcho />
-      </div>
+        {/* 🌑 DARK EMPHASIS SECTION */}
+        <section className="relative z-10 -mt-16 rounded-t-[3rem] py-16 md:py-32 bg-[#0E0E0E] text-white overflow-hidden">
+          <div className="max-w-[1400px] mx-auto px-4">
+            <p className="text-sm uppercase tracking-widest text-white/50 mb-6">
+              Archive Identity
+            </p>
+            <h2 className="text-[8vw] md:text-[6vw] leading-none font-semibold tracking-tight break-words">
+              AKR - More works.
+            </h2>
+          </div>
+        </section>
 
-      {/* 🌑 DARK EMPHASIS SECTION */}
-      <section className="relative z-10 -mt-16 rounded-t-[3rem] py-16 md:py-32 bg-[#0E0E0E] text-white overflow-hidden">
-        <div className="max-w-[1400px] mx-auto px-4">
-          <p className="text-sm uppercase tracking-widest text-white/50 mb-6">
-            Archive Identity
-          </p>
-          <h2 className="text-[8vw] md:text-[6vw] leading-none font-semibold tracking-tight break-words">
-            AKR - More works.
-          </h2>
+        {/* 📦 PORTFOLIO SECTION (Parallel Archive Layout) */}
+        <div id="portfolio" className="relative z-30 -mt-16 rounded-t-[3rem] overflow-hidden">
+          <ParallelArchive />
         </div>
-      </section>
 
-      {/* 📦 PORTFOLIO SECTION (Parallel Archive Layout) */}
-      <div id="portfolio" className="relative z-30 -mt-16 rounded-t-[3rem] overflow-hidden">
-        <ParallelArchive />
-      </div>
+        {/* 🛠 DEVELOPER TOOLKIT (Interactive Folder Layout) */}
+        <Section
+          id="docs"
+          title="Developer Toolkit."
+          subtitle="Commands, workflows, and systems I use to build."
+          className="bg-[#ECEAE6]"
+        >
+          {/* Folder Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-16 py-8 md:py-12 max-w-6xl mx-auto px-2 md:px-0">
 
-      {/* 🛠 DEVELOPER TOOLKIT (Interactive Folder Layout) */}
-      <Section
-        id="docs"
-        title="Developer Toolkit."
-        subtitle="Commands, workflows, and systems I use to build."
-        className="bg-[#ECEAE6]"
-      >
-        {/* Folder Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-16 py-8 md:py-12 max-w-6xl mx-auto px-2 md:px-0">
+            {/* Git Folder */}
+            <div className="flex flex-col items-center gap-3">
+              <Folder
+                color="#FF5B5B"
+                label="Git"
+                items={["git init", "git clone", "git push"]}
+                onClick={() => {
+                  setActiveTool("Git Workflow");
+                  setToolCommands([
+                    "git init",
+                    "git clone <repository-url>",
+                    "git checkout -b <branch-name>",
+                    "git add .",
+                    "git commit -m 'your message'",
+                    "git pull origin main",
+                    "git push origin <branch-name>",
+                    "git merge main"
+                  ]);
+                }}
+              />
+              <p className="text-xs uppercase tracking-[0.2em] font-extrabold text-black/45 mt-2" style={{ fontFamily: "'Google Sans', sans-serif" }}>Git</p>
+            </div>
 
-          {/* Git Folder */}
-          <div className="flex flex-col items-center gap-3">
-            <Folder
-              color="#FF5B5B"
-              label="Git"
-              items={["git init", "git clone", "git push"]}
-              onClick={() => {
-                setActiveTool("Git Workflow");
-                setToolCommands([
-                  "git init",
-                  "git clone <repository-url>",
-                  "git checkout -b <branch-name>",
-                  "git add .",
-                  "git commit -m 'your message'",
-                  "git pull origin main",
-                  "git push origin <branch-name>",
-                  "git merge main"
-                ]);
-              }}
-            />
-            <p className="text-xs uppercase tracking-[0.2em] font-extrabold text-black/45 mt-2" style={{ fontFamily: "'Google Sans', sans-serif" }}>Git</p>
+            {/* Bun Folder */}
+            <div className="flex flex-col items-center gap-3">
+              <Folder
+                color="#E9FF61"
+                label="Bun"
+                items={["bun init", "bun install", "bun dev"]}
+                onClick={() => {
+                  setActiveTool("Bun Toolkit");
+                  setToolCommands([
+                    "bun init",
+                    "bun install",
+                    "bun add <package>",
+                    "bun run dev",
+                    "bun run build",
+                    "bun test",
+                    "bun x create-next-app"
+                  ]);
+                }}
+              />
+              <p className="text-xs uppercase tracking-[0.2em] font-extrabold text-black/45 mt-2" style={{ fontFamily: "'Google Sans', sans-serif" }}>Bun</p>
+            </div>
+
+            {/* npm Folder */}
+            <div className="flex flex-col items-center gap-3">
+              <Folder
+                color="#FF8E53"
+                label="npm"
+                items={["npm init", "npm install", "npm dev"]}
+                onClick={() => {
+                  setActiveTool("NPM Workflow");
+                  setToolCommands([
+                    "npm init -y",
+                    "npm install",
+                    "npm install <package>",
+                    "npm run dev",
+                    "npm run build",
+                    "npm run start",
+                    "npx create-next-app"
+                  ]);
+                }}
+              />
+              <p className="text-xs uppercase tracking-[0.2em] font-extrabold text-black/45 mt-2" style={{ fontFamily: "'Google Sans', sans-serif" }}>npm</p>
+            </div>
+
+            {/* Python Folder */}
+            <div className="flex flex-col items-center gap-3">
+              <Folder
+                color="#5BE7FF"
+                label="Python"
+                items={["uv venv", "uv pip install", "uv run"]}
+                onClick={() => {
+                  setActiveTool("Python (uv + pip)");
+                  setToolCommands([
+                    "uv venv",
+                    "source .venv/bin/activate",
+                    "uv pip install fastapi",
+                    "uv pip install -r requirements.txt",
+                    "uv pip freeze > requirements.txt",
+                    "uv run main.py",
+                    "pip install -r requirements.txt",
+                    "pip freeze"
+                  ]);
+                }}
+              />
+              <p className="text-xs uppercase tracking-[0.2em] font-extrabold text-black/45 mt-2" style={{ fontFamily: "'Google Sans', sans-serif" }}>Python</p>
+            </div>
+
+            {/* Cheatsheets */}
+            <div className="flex flex-col items-center gap-3">
+              <Folder
+                color="#E07BFF"
+                label="Cheatsheets"
+                items={["Patterns", "Layouts", "Auth"]}
+                onClick={() => {
+                  setActiveTool("Developer Cheatsheets");
+                  setToolCommands([
+                    "Flexbox patterns (Centering, Grids)",
+                    "CSS Grid layouts (Masonry, Holy Grail)",
+                    "API architectural patterns (REST, GraphQL)",
+                    "Auth flows (OAuth2, JWT, Sessions)",
+                    "System design fundamentals"
+                  ]);
+                }}
+              />
+              <p className="text-xs uppercase tracking-[0.2em] font-extrabold text-black/45 mt-2" style={{ fontFamily: "'Google Sans', sans-serif" }}>Cheatsheets</p>
+            </div>
+
+            {/* Docs Links */}
+            <div className="flex flex-col items-center gap-3">
+              <Folder
+                color="#FFFFFF"
+                label="Docs"
+                items={["akr-refs.vercel.app"]}
+                onClick={() => {
+                  setActiveTool("AKR References");
+                  setToolCommands([
+                    "akr-refs.vercel.app"
+                  ]);
+                }}
+              />
+              <p className="text-xs uppercase tracking-[0.2em] font-extrabold text-black/45 mt-2" style={{ fontFamily: "'Google Sans', sans-serif" }}>Docs</p>
+            </div>
+
           </div>
+        </Section>
 
-          {/* Bun Folder */}
-          <div className="flex flex-col items-center gap-3">
-            <Folder
-              color="#E9FF61"
-              label="Bun"
-              items={["bun init", "bun install", "bun dev"]}
-              onClick={() => {
-                setActiveTool("Bun Toolkit");
-                setToolCommands([
-                  "bun init",
-                  "bun install",
-                  "bun add <package>",
-                  "bun run dev",
-                  "bun run build",
-                  "bun test",
-                  "bun x create-next-app"
-                ]);
-              }}
-            />
-            <p className="text-xs uppercase tracking-[0.2em] font-extrabold text-black/45 mt-2" style={{ fontFamily: "'Google Sans', sans-serif" }}>Bun</p>
-          </div>
-
-          {/* npm Folder */}
-          <div className="flex flex-col items-center gap-3">
-            <Folder
-              color="#FF8E53"
-              label="npm"
-              items={["npm init", "npm install", "npm dev"]}
-              onClick={() => {
-                setActiveTool("NPM Workflow");
-                setToolCommands([
-                  "npm init -y",
-                  "npm install",
-                  "npm install <package>",
-                  "npm run dev",
-                  "npm run build",
-                  "npm run start",
-                  "npx create-next-app"
-                ]);
-              }}
-            />
-            <p className="text-xs uppercase tracking-[0.2em] font-extrabold text-black/45 mt-2" style={{ fontFamily: "'Google Sans', sans-serif" }}>npm</p>
-          </div>
-
-          {/* Python Folder */}
-          <div className="flex flex-col items-center gap-3">
-            <Folder
-              color="#5BE7FF"
-              label="Python"
-              items={["uv venv", "uv pip install", "uv run"]}
-              onClick={() => {
-                setActiveTool("Python (uv + pip)");
-                setToolCommands([
-                  "uv venv",
-                  "source .venv/bin/activate",
-                  "uv pip install fastapi",
-                  "uv pip install -r requirements.txt",
-                  "uv pip freeze > requirements.txt",
-                  "uv run main.py",
-                  "pip install -r requirements.txt",
-                  "pip freeze"
-                ]);
-              }}
-            />
-            <p className="text-xs uppercase tracking-[0.2em] font-extrabold text-black/45 mt-2" style={{ fontFamily: "'Google Sans', sans-serif" }}>Python</p>
-          </div>
-
-          {/* Cheatsheets */}
-          <div className="flex flex-col items-center gap-3">
-            <Folder
-              color="#E07BFF"
-              label="Cheatsheets"
-              items={["Patterns", "Layouts", "Auth"]}
-              onClick={() => {
-                setActiveTool("Developer Cheatsheets");
-                setToolCommands([
-                  "Flexbox patterns (Centering, Grids)",
-                  "CSS Grid layouts (Masonry, Holy Grail)",
-                  "API architectural patterns (REST, GraphQL)",
-                  "Auth flows (OAuth2, JWT, Sessions)",
-                  "System design fundamentals"
-                ]);
-              }}
-            />
-            <p className="text-xs uppercase tracking-[0.2em] font-extrabold text-black/45 mt-2" style={{ fontFamily: "'Google Sans', sans-serif" }}>Cheatsheets</p>
-          </div>
-
-          {/* Docs Links */}
-          <div className="flex flex-col items-center gap-3">
-            <Folder
-              color="#FFFFFF"
-              label="Docs"
-              items={["akr-refs.vercel.app"]}
-              onClick={() => {
-                setActiveTool("AKR References");
-                setToolCommands([
-                  "akr-refs.vercel.app"
-                ]);
-              }}
-            />
-            <p className="text-xs uppercase tracking-[0.2em] font-extrabold text-black/45 mt-2" style={{ fontFamily: "'Google Sans', sans-serif" }}>Docs</p>
-          </div>
-
-        </div>
-      </Section>
-
-      {/* 👤 ME SECTION */}
-      <Section
-        id="me"
-        title="Me."
-        subtitle="A closer look at the creator behind the archive. I Just Added this because it looked Cool FR <_> lol."
-        className="bg-[#F8F7F5]"
-      >
-        <div className="w-full">
-          <div className="rounded-[28px] md:rounded-[40px] overflow-hidden bg-[#0a0a0a] border border-black/[0.04] p-2 md:p-4 flex flex-col items-center justify-center group hover:border-black/10 hover:shadow-2xl transition-all duration-700 relative aspect-[4/3] md:aspect-[21/9]">
-            <div className="w-full h-full rounded-[2rem] overflow-hidden relative bg-black">
-              <LorenzoInteractivePortrait backgroundColor="#000000" colorBgVec3="0.0,0.0,0.0" />
+        {/* 👤 ME SECTION */}
+        <Section
+          id="me"
+          title="Me."
+          subtitle="A closer look at the creator behind the archive. I Just Added this because it looked Cool FR <_> lol."
+          className="bg-[#F8F7F5]"
+        >
+          <div className="w-full">
+            <div className="rounded-[28px] md:rounded-[40px] overflow-hidden bg-[#0a0a0a] border border-black/[0.04] p-2 md:p-4 flex flex-col items-center justify-center group hover:border-black/10 hover:shadow-2xl transition-all duration-700 relative aspect-[4/3] md:aspect-[21/9]">
+              <div className="w-full h-full rounded-[2rem] overflow-hidden relative bg-black">
+                <LorenzoInteractivePortrait backgroundColor="#000000" colorBgVec3="0.0,0.0,0.0" />
+              </div>
             </div>
           </div>
-        </div>
-      </Section>
-    </div>
+        </Section>
+      </div>
 
 
       {/* 📖 AEO: FAQ + BODY TEXT + CONTEXTUAL LINKS SECTION */}
