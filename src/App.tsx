@@ -9,6 +9,7 @@ import { DynamicNav } from './components/DynamicNav';
 import SocialDirectory from './components/SocialDirectory';
 import { TextFlippingBoardSection } from './components/TextFlippingBoard';
 import AkrEcho from './components/AkrEcho';
+import SmoothScroll from './components/SmoothScroll';
 
 /**
  * CONFIGURATION: Hero background asset
@@ -186,7 +187,8 @@ export default function App() {
 
 
   return (
-    <div className="relative min-h-screen w-full bg-background font-sans selection:bg-foreground/10 selection:text-foreground">
+    <SmoothScroll>
+      <div className="relative min-h-screen w-full bg-background font-sans selection:bg-foreground/10 selection:text-foreground">
 
       {/* 👀 Floating Cursor-Tracking Eyeballs - hidden on mobile to avoid overlapping replay button */}
       {!isPreloaderActive && <div className="hidden md:block"><InteractiveEyes /></div>}
@@ -1030,7 +1032,8 @@ export default function App() {
           </div>
         )}
       </AnimatePresence>
-    </div>
+      </div>
+    </SmoothScroll>
   );
 }
 
